@@ -1,0 +1,22 @@
+#footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+
+  height: 2rem;
+  padding: 1rem;
+
+  border-top: 0.125rem solid transparent;
+
+  background:
+    linear-gradient(white, white) padding-box,
+    linear-gradient(90deg, var(--mainColor1), var(--mainColor2)) border-box;
+  
+  transform: translateY(100%);
+  animation: spawnYLower 1s ease forwards;
+}
+@keyframes spawnYLower {
+  to {
+    transform: translateY(0%);
+  }
+}
