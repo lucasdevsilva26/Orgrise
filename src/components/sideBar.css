@@ -1,0 +1,70 @@
+#sideBar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 1.5rem;
+
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 12rem;
+  height: 100%;
+  padding-block: 2.5rem;
+
+  border-right: solid 0.125rem transparent;
+  background:
+    linear-gradient(
+        rgb(244, 244, 244),
+        rgb(255, 255, 255),
+        rgb(255, 255, 255),
+        rgb(244, 244, 244)
+      )
+      padding-box,
+    linear-gradient(
+        0deg,
+        var(--mainColor1),
+        var(--mainColor2),
+        var(--mainColor1)
+      )
+      border-box;
+
+  transition: 0.75s ease;
+}
+#sideBar button {
+  display: flex;
+  gap: 0.25rem;
+
+  width: 11rem;
+  height: 3rem;
+
+  border-radius: 0.5rem;
+  background: linear-gradient(var(--buttonColor1), var(--buttonColor2));
+
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: white;
+}
+#sideBar button i {
+  color: white;
+}
+#sideBar #menuButton {
+  position: absolute;
+  top: 1rem;
+  right: -1rem;
+  transform: translate(100%) scale(0.95);
+
+  width: 3rem;
+
+  font-size: 2rem;
+
+  opacity: 0.95;
+
+  transition: 0.75s ease;
+}
+#sideBar #menuButton:hover {
+  transform: translate(100%) scale(1);
+}
+#sideBar #menuButton i {
+  transition: 0.75s ease;
+}
