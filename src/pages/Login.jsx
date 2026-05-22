@@ -6,11 +6,6 @@ import { useNavigate } from 'react-router'
 function Login() {
 const navigate = useNavigate()
 
-function handleLogin(e) {
-    e.preventDefault()
-    navigate('/landing')
-}
-
 return (
     <>
         <Header></Header>
@@ -20,7 +15,7 @@ return (
                 <label htmlFor="emailInput">Entrar</label>
             </h1>
 
-            <form onSubmit={(e) => handleLogin(e)}>
+            <form>
                 <div>
                     <label htmlFor="emailInput">Email</label>
                     <input type="email" id='emailInput' required placeholder='Digite seu email'/>
@@ -32,7 +27,7 @@ return (
                 </div>
 
                 <div>
-                    <button className='responButton' type='submit' >Entrar</button>
+                    <button className='responButton' type='button' onClick={() => navigate('/landing')}>Entrar</button>
                     <button type='button' onClick={() => navigate('/signon')}>Não possui uma conta? clique aqui</button>
                 </div>
             </form>
