@@ -15,6 +15,8 @@ return (
             <h1>Bem vindo!</h1>
 
             <SideBar></SideBar>
+
+            <CreateMenu></CreateMenu>
         </main>
 
         <Footer></Footer>

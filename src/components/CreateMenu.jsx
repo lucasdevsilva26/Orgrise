@@ -16,11 +16,26 @@ const [image, setImage] = useState("")
 
   return (
     <>
+      <section id="createMenu">
         <input type="file" accept="image/*" onChange={handleImage} style={{backgroundImage:`url(${image})`}}/>
-        <input type="text" />
-        <input type="number" name="" id="" />
-        <input type="number" name="" id="" />
 
+        <form>
+          <div>
+            <label htmlFor="itemName">Nome do Produto</label>
+            <input type="text" id="itemName"/>
+          </div>
+
+          <div>
+            <label htmlFor="itemPrice">Preço do Produto</label>
+            <input type="number" id="itemPrice" />
+          </div>
+
+          <div>
+            <label htmlFor="itemAmount">Quantidade</label>
+            <input type="number" id="itemAmount" />
+          </div>
+        </form>
+      </section>
     </>
   )
 }
