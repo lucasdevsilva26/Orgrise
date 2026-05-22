@@ -1,0 +1,18 @@
+#iconList {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1rem;
+
+  width: 40rem;
+  height: 10rem;
+  padding: 1rem;
+
+  border-radius: 1rem;
+  background-color: rgb(214, 214, 214);
+
+  overflow-x: hidden;
+  scrollbar-width: none;
+}
+#iconList button {
+    font-size: 3rem;
+}
