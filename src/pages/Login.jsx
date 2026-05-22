@@ -27,7 +27,7 @@ return (
                 </div>
 
                 <div>
-                    <button className='responButton' type='submite' onClick={() => navigate('/landing')}>Entrar</button>
+                    <button className='responButton' type='submit' onClick={() => navigate('/landing')}>Entrar</button>
                     <button type='button' onClick={() => navigate('/signon')}>Não possui uma conta? clique aqui</button>
                 </div>
             </form>
