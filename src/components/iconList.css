@@ -1,18 +1,35 @@
 #iconList {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 
-  width: 40rem;
+  width: 90%;
+  max-width: 50rem;
   height: 10rem;
   padding: 1rem;
 
-  border-radius: 1rem;
+  border-radius: .5rem;
   background-color: rgb(214, 214, 214);
 
   overflow-x: hidden;
-  scrollbar-width: none;
+  overflow-y: auto;
+}
+#iconList::-webkit-scrollbar {
+  width: 1rem;
+}
+#iconList::-webkit-scrollbar-thumb {
+  border-radius: 9999rem;
+  border: .25rem solid transparent;
+
+  background: rgb(145, 145, 145);
+  background-clip: content-box;
+}
+#iconList::-webkit-scrollbar-track {
+  background: none;
 }
 #iconList button {
-    font-size: 3rem;
+    font-size: 250%;
+}
+#iconList button i {
+  text-shadow: .15rem .15rem 0rem rgba(0, 0, 0, .25);
 }

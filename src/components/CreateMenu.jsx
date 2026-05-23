@@ -3,7 +3,7 @@ import "./createMenu.css";
 import IconList from "./iconList";
 
 function CreateMenu() {
-  const [items, changeItems] = useState([])
+  const [items, changeItems] = useState([]);
 
   const [icons, changeIcons] = useState([
     { id: 0, icon: "fa-utensils" },
@@ -77,89 +77,130 @@ function CreateMenu() {
     { id: 68, icon: "fa-question" },
   ]);
 
-  const [icon, setIcon] = useState(icons[68].icon)
-  const [name, changeName] = useState()
-  const [price, changeprice] = useState()
-  const [amount, changeAmount] = useState()
+  const [icon, setIcon] = useState(icons[68].icon);
+  const [color, changeColor] = useState('#000');
+  const [name, changeName] = useState();
+  const [price, changeprice] = useState();
+  const [amount, changeAmount] = useState();
 
-function createItem(icon, name, price, amount) {
-  let canAdd = true
+  function createItem(icon, color, name, price, amount) {
+    let canAdd = true;
 
-  if (name && price && amount) {
-    if (name.trim().length == 0 && price.trim().length == 0 && amount.trim().length == 0) { canAdd = false }
-
-    if (items.length > 0) {
-      items.filter((item) => {if (item.name.trim() == name.trim()) { canAdd = false }})
-    }
-
-    if (canAdd) {
-      const newItem = {
-        id:crypto.randomUUID(),
-        icon: icon,
-        name: name,
-        price: price,
-        amount: amount,
+    if (name && price && amount) {
+      if (
+        name.trim().length == 0 &&
+        price.trim().length == 0 &&
+        amount.trim().length == 0
+      ) {
+        canAdd = false;
       }
-      changeItems([...items, newItem])
+
+      if (items.length > 0) {
+        items.filter((item) => {
+          if (item.name.trim() == name.trim()) {
+            canAdd = false;
+          }
+        });
+      }
+
+      if (canAdd) {
+        const newItem = {
+          id: crypto.randomUUID(),
+          icon: icon,
+          color: color,
+          name: name,
+          price: price,
+          amount: amount,
+        };
+        changeItems([...items, newItem]);
+      }
     }
   }
-}
-function iconChange(iconName) {
-  setIcon(iconName)
-}
+  function iconChange(iconName) {
+    setIcon(iconName);
+  }
 
   return (
     <>
       <section id="createMenu">
         <section>
           <div>
-            Escolha o ícone
-
+            <label htmlFor="iconManager">Escolha o ícone</label>
             <button id="iconManager">
-              <i className={`fas ${icon}`}></i>
+              <i className={`fas ${icon}`} style={{ color: `${color}` }}></i>
             </button>
+            <div>
+              <label htmlFor="itemColor">Escolha a cor</label>
+              <input
+                type="color"
+                id="itemColor"
+                onChange={(e) => changeColor(e.target.value)}
+              />
+            </div>
           </div>
 
           <form>
             <div>
               <label htmlFor="itemName">Nome do Produto</label>
-              <input type="text" id="itemName" onChange={(e) => changeName(e.target.value)}/>
+              <input
+                type="text"
+                id="itemName"
+                onChange={(e) => changeName(e.target.value)}
+              />
             </div>
 
             <div>
               <label htmlFor="itemPrice">Preço do Produto</label>
-              <input type="number" id="itemPrice" onChange={(e) => changeprice(e.target.value)}/>
+              <input
+                type="number"
+                id="itemPrice"
+                onChange={(e) => changeprice(e.target.value)}
+              />
             </div>
 
             <div>
               <label htmlFor="itemAmount">Quantidade</label>
-              <input type="number" id="itemAmount" onChange={(e) => changeAmount(e.target.value)}/>
+              <input
+                type="number"
+                id="itemAmount"
+                onChange={(e) => changeAmount(e.target.value)}
+              />
             </div>
           </form>
         </section>
 
-        <button onClick={() => createItem(icon, name, price, amount)}>Criar</button>
+        <button onClick={() => createItem(icon, color, name, price, amount)}>
+          Criar
+        </button>
       </section>
 
-      <IconList icons={icons} iconChange={iconChange}></IconList>
+      <IconList icons={icons} iconChange={iconChange} color={color} ></IconList>
 
       <section id="itemList">
         {items.map((item) => {
-          return ( 
-            <article key={item.id} className="itemCard"> 
+          return (
+            <article key={item.id} className="itemCard">
+              <i
+                className={`fas item ${item.icon}`}
+                style={{ color: `${item.color}` }}
+              ></i>
 
-              <i className={`fas item ${item.icon}`}></i>
+              <h2> {item.name} </h2>
 
-              <h2> { item.name } </h2>
+              <span>
+                {" "}
+                {Number(item.price).toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
+                })}{" "}
+              </span>
 
-              <span> { Number(item.price).toLocaleString('pt-BR', {style: 'currency', currency: 'BRL'}) } </span>
-
-              <span> { item.amount } </span>
+              <span> {item.amount} </span>
             </article>
-          )
+          );
         })}
       </section>
     </>
-  )
+  );
 }
 export default CreateMenu;

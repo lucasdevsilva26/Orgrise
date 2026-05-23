@@ -25,6 +25,15 @@
 
   font-size: 7rem;
 }
+#createMenu section div div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+#createMenu section div div input {
+  width: 1.5rem;
+  aspect-ratio: 1 / 1;
+}
 
 #createMenu input[type="text"],
 #createMenu input[type="number"] {
@@ -46,6 +55,9 @@
 #createMenu form div {
   display: flex;
   flex-direction: column;
+}
+#createMenu label {
+  font-weight: bold;
 }
 
 #itemList {
