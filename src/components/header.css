@@ -75,9 +75,6 @@
 }
 #header #signon {
   padding: 0.5rem 1rem;
-
-  background: linear-gradient(var(--buttonColor1), var(--buttonColor2));
-  color: white;
 }
 #header #menu {
   display: none;

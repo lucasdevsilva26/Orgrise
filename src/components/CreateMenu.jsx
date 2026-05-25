@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./createMenu.css";
 import IconList from "./IconList";
+import ItemList from "./itemList";
 
 function CreateMenu() {
   const [items, changeItems] = useState([]);
@@ -76,9 +77,10 @@ function CreateMenu() {
     { id: 67, icon: "fa-gift" },
     { id: 68, icon: "fa-question" },
   ]);
+  const [iconsMenu, changeIconsMenu] = useState(false);
 
   const [icon, setIcon] = useState(icons[68].icon);
-  const [color, changeColor] = useState('#000');
+  const [color, changeColor] = useState("#000");
   const [name, changeName] = useState();
   const [price, changeprice] = useState();
   const [amount, changeAmount] = useState();
@@ -122,11 +124,14 @@ function CreateMenu() {
 
   return (
     <>
-      <section id="createMenu">
+      <section id="createMenu" className="boxShadow">
         <section>
           <div>
             <label htmlFor="iconManager">Escolha o ícone</label>
-            <button id="iconManager">
+            <button
+              id="iconManager"
+              onClick={() => changeIconsMenu(!iconsMenu)}
+            >
               <i className={`fas ${icon}`} style={{ color: `${color}` }}></i>
             </button>
             <div>
@@ -169,37 +174,23 @@ function CreateMenu() {
           </form>
         </section>
 
-        <button onClick={() => createItem(icon, color, name, price, amount)}>
+        <button
+          className="responButton"
+          onClick={() => createItem(icon, color, name, price, amount)}
+        >
           Criar
         </button>
       </section>
 
-      <IconList icons={icons} iconChange={iconChange} color={color} ></IconList>
+      <IconList
+        icons={icons}
+        iconChange={iconChange}
+        color={color}
+        iconsMenu={iconsMenu}
+        changeIconsMenu={changeIconsMenu}
+      ></IconList>
 
-      <section id="itemList">
-        {items.map((item) => {
-          return (
-            <article key={item.id} className="itemCard">
-              <i
-                className={`fas item ${item.icon}`}
-                style={{ color: `${item.color}` }}
-              ></i>
-
-              <h2> {item.name} </h2>
-
-              <span>
-                {" "}
-                {Number(item.price).toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
-                })}{" "}
-              </span>
-
-              <span> {item.amount} </span>
-            </article>
-          );
-        })}
-      </section>
+      <ItemList items={items}></ItemList>
     </>
   );
 }

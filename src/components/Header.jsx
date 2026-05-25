@@ -34,7 +34,7 @@ function Header() {
 
         <button
           id="signon"
-          className="responButton"
+          className="responButton coloredButton"
           onClick={() => navigate("/signon")}
         >
           Cadastrar-se
