@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./createMenu.css";
 import IconList from "./IconList";
-import ItemList from "./itemList";
+import ItemList from "./ItemList";
 
 function CreateMenu() {
   const [items, changeItems] = useState([]);
