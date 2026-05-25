@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./createMenu.css";
 import IconList from "./IconList";
 import ItemList from "./ItemList";
@@ -81,41 +81,35 @@ function CreateMenu() {
 
   const [icon, setIcon] = useState(icons[68].icon);
   const [color, changeColor] = useState("#000");
-  const [name, changeName] = useState();
-  const [price, changeprice] = useState();
-  const [amount, changeAmount] = useState();
+  const [name, changeName] = useState("");
+  const [price, changeprice] = useState(0);
+  const [amount, changeAmount] = useState(0);
+
+  const validation = {
+    isNameEmply: name?.trim().length > 0,
+    isPriceEmply: price?.length > 0,
+    isAmountEmply: amount?.length > 0,
+    isDuplicate: !items.some((item) => item.name.trim() == name?.trim())
+  }
+  const errorMessages = [
+    'Preencha o campo Nome!',
+    'Preencha o campo Preço!',
+    'Preencha o campo Quantidade!',
+    'Este produto já existe!'
+  ]
+  const isValid = Object.values(validation).indexOf(false) == -1
 
   function createItem(icon, color, name, price, amount) {
-    let canAdd = true;
-
-    if (name && price && amount) {
-      if (
-        name.trim().length == 0 &&
-        price.trim().length == 0 &&
-        amount.trim().length == 0
-      ) {
-        canAdd = false;
-      }
-
-      if (items.length > 0) {
-        items.filter((item) => {
-          if (item.name.trim() == name.trim()) {
-            canAdd = false;
-          }
-        });
-      }
-
-      if (canAdd) {
-        const newItem = {
-          id: crypto.randomUUID(),
-          icon: icon,
-          color: color,
-          name: name,
-          price: price,
-          amount: amount,
-        };
-        changeItems([...items, newItem]);
-      }
+    if (isValid) {
+      const newItem = {
+        id: crypto.randomUUID(),
+        icon: icon,
+        color: color,
+        name: name,
+        price: price,
+        amount: amount,
+      };
+      changeItems([...items, newItem]);
     }
   }
   function iconChange(iconName) {
@@ -125,11 +119,14 @@ function CreateMenu() {
   return (
     <>
       <section id="createMenu" className="boxShadow">
+        <h2>Criar Item</h2>
+
         <section>
           <div>
             <label htmlFor="iconManager">Escolha o ícone</label>
             <button
               id="iconManager"
+              className="boxShadow"
               onClick={() => changeIconsMenu(!iconsMenu)}
             >
               <i className={`fas ${icon}`} style={{ color: `${color}` }}></i>
@@ -139,17 +136,21 @@ function CreateMenu() {
               <input
                 type="color"
                 id="itemColor"
+                required
                 onChange={(e) => changeColor(e.target.value)}
               />
             </div>
           </div>
 
-          <form>
+          <form onSubmit={(e) => e.preventDefault()}>
             <div>
               <label htmlFor="itemName">Nome do Produto</label>
               <input
                 type="text"
                 id="itemName"
+                placeholder="Digite o nome"
+                maxLength={125}
+                required
                 onChange={(e) => changeName(e.target.value)}
               />
             </div>
@@ -159,6 +160,10 @@ function CreateMenu() {
               <input
                 type="number"
                 id="itemPrice"
+                placeholder="Digite o preço"
+                min={0}
+                max={9999999999}
+                required
                 onChange={(e) => changeprice(e.target.value)}
               />
             </div>
@@ -168,18 +173,30 @@ function CreateMenu() {
               <input
                 type="number"
                 id="itemAmount"
+                placeholder="Digite a quantidade"
+                min={0}
+                max={9999999999}
+                required
                 onChange={(e) => changeAmount(e.target.value)}
               />
             </div>
+
+            <button
+              style={{ display: "none" /*Activate Requireds on Form*/ }}
+            ></button>
           </form>
         </section>
 
-        <button
-          className="responButton"
-          onClick={() => createItem(icon, color, name, price, amount)}
-        >
-          Criar
-        </button>
+        <div id="submitContainer">
+          <button
+            className={`coloredButton ${isValid ? "responButton" : "disabledButton"}`}
+            onClick={() => createItem(icon, color, name, price, amount)}
+          >
+            Criar
+          </button>
+
+          <span id="alert" style={{opacity:`${isValid ? '0' : '1'}`}}>{errorMessages[Object.values(validation).indexOf(false)]}</span>
+        </div>
       </section>
 
       <IconList
@@ -192,6 +209,14 @@ function CreateMenu() {
 
       <ItemList items={items}></ItemList>
     </>
+
+    /*
+function checkEmail(email) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email,
+  );
+}
+*/
   );
 }
 export default CreateMenu;
