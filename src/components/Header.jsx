@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router";
 import "./header.css";
 
-function Header() {
+function Header({sideMenuState, changeSideMenuState}) {
   const navigate = useNavigate();
 
   return (
@@ -43,7 +43,7 @@ function Header() {
         <button
           id="menu"
           className="responButton"
-          onClick={() => console.log("redirect")}
+          onClick={() => changeSideMenuState(!sideMenuState)}
         >
           <i className="fas fa-bars"></i>
         </button>

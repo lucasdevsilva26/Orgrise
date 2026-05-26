@@ -94,24 +94,48 @@
   #header #menu {
     display: flex;
   }
+
+  #sideMenus {
+    display: flex !important;
+  }
+  #sideMenus #signon {
+    display: flex;
+  }
 }
 @media (max-width: 28rem) {
   #header #login {
     display: none;
+  }
+
+  #sideMenus #login {
+    display: flex;
   }
 }
 @media (max-width: 24rem) {
   #header #start {
     display: none;
   }
+
+  #sideMenus #start {
+    display: flex;
+  }
 }
 @media (max-width: 16rem) {
   #header #content {
     display: none;
   }
+
+  #sideMenus #content {
+    display: flex;
+  }
 }
 @media (max-width: 8rem) {
   #header #logo {
     display: none;
+  }
+  #header #menu {
+    position: absolute;
+    left: 50%;
+    translate: -50%;
   }
 }

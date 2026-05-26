@@ -10,7 +10,7 @@ return (
     <>
         <Header></Header>
 
-        <main id='login'>
+        <main id='accountForm'>
             <h1>
                 <label htmlFor="emailInput">Entrar</label>
             </h1>
