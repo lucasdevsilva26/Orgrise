@@ -12,17 +12,19 @@ function ItemList({ items }) {
             </div>
 
             <div>
-              <h2> Nome: {item.name} </h2>
+              <label>Nome</label>
+              <h2> {item.name} </h2>
 
+              <label>Preço</label>
               <span>
-                Preço:{" "}
                 {Number(item.price).toLocaleString("pt-BR", {
                   style: "currency",
                   currency: "BRL",
                 })}
               </span>
 
-              <span> Quantidade: {item.amount} </span>
+              <label>Quantidade</label>
+              <span> {item.amount} </span>
             </div>
           </article>
         );
