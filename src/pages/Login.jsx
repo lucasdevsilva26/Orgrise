@@ -16,9 +16,9 @@ return (
         changeSideMenuState={changeSideMenuState}
       ></Header>
 
-        <SideMenus sideMenuState={sideMenuState}></SideMenus>
-
         <main id='accountForm'>
+            <SideMenus sideMenuState={sideMenuState}></SideMenus>
+            
             <h1>
                 <label htmlFor="emailInput">Entrar</label>
             </h1>

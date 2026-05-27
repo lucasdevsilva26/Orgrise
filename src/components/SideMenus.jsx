@@ -9,7 +9,7 @@ function SideMenus({sideMenuState}) {
     <>
       <aside
         id="sideMenus"
-        style={{ transform: `translateX(${sideMenuState ? -100 : 100}%)` }}
+        style={{ transform: `translateX(${sideMenuState ? 0 : 100}%)` }}
       >
         <button
           id="start"
