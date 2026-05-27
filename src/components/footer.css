@@ -11,7 +11,9 @@
   background:
     linear-gradient(white, white) padding-box,
     linear-gradient(90deg, var(--mainColor1), var(--mainColor2)) border-box;
-  
+
+  overflow: hidden;
+
   transform: translateY(100%);
   animation: spawnYLower 1s ease forwards;
 }

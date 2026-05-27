@@ -80,6 +80,7 @@ h1 {
 }
 
 .coloredButton {
+  overflow: hidden;
   background: linear-gradient(var(--buttonColor1), var(--buttonColor2));
   color: white;
 }
