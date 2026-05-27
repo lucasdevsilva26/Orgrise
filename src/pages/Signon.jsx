@@ -2,13 +2,21 @@ import Header from '../components/Header'
 import Footer from '../components/Footer'
 import './loginSignon.css'
 import { useNavigate } from 'react-router'
+import SideMenus from '../components/SideMenus'
+import { useState } from 'react'
 
 function Signon() {
 const navigate = useNavigate()
+const [sideMenuState, changeSideMenuState] = useState(false);
 
 return (
     <>
-        <Header></Header>
+        <Header
+        sideMenuState={sideMenuState}
+        changeSideMenuState={changeSideMenuState}
+      ></Header>
+
+        <SideMenus sideMenuState={sideMenuState}></SideMenus>
 
         <main id='accountForm'>
             <h1>Criar Conta</h1>
