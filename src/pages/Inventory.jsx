@@ -4,10 +4,10 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 
 import { Global } from "../main";
-import ToolBar from "../components/ToolBar";
-import FindBar from "../components/FindBar";
-import ItemsList from "../components/ItemsList";
-import IconsList from "../components/IconsList";
+import ToolBar from "../components/inventory/ToolBar";
+import FindBar from "../components/inventory/FindBar";
+import ItemsList from "../components/inventory/ItemsList";
+import IconsList from "../components/inventory/IconsList";
 
 function Inventory() {
   const presets = {
@@ -121,34 +121,59 @@ function Inventory() {
       <Header colors={Global.colors}></Header>
       <Body colors={Global.colors} direction={` flex-col `}>
         <section className={` flex flex-col h-max `}>
-          <ToolBar presets={presets} setMode={setMode} ></ToolBar>
+          <ToolBar presets={presets} mode={mode} setMode={setMode}></ToolBar>
           <FindBar presets={presets}></FindBar>
 
-          <ItemsList items={items} mode={mode} colorMode={colorMode} setItems={setItems}></ItemsList>
+          <ItemsList
+            items={items}
+            mode={mode}
+            colorMode={colorMode}
+            setItems={setItems}
+          ></ItemsList>
 
-          <IconsList presets={presets} itemsMenu={itemsMenu} iconsList={iconsList} setIcon={setIcon}></IconsList>
+          <IconsList
+            presets={presets}
+            itemsMenu={itemsMenu}
+            iconsList={iconsList}
+            setIcon={setIcon}
+          ></IconsList>
 
           <section
-            className={` flex flex-col fixed w-100 top-1/2 left-1/2 -translate-1/2 rounded-xl p-6 ${Global.colors.frontground0} ${mode ? "flex" : "hidden"} border-3 ${Global.colors.border} `}
+            className={` flex flex-col fixed w-100 top-1/2 left-1/2 -translate-1/2 rounded-xl p-6 ${Global.colors.frontground0} ${mode == "create" ? "flex" : "hidden"} border-3 ${Global.colors.border} `}
           >
             <button
               className={
                 ` absolute top-0 right-0 w-10 h-10 translate-x-1/2 -translate-y-1/2 ${Global.colors.frontground1} border-2 ${Global.colors.border} rounded-4xl text-2xl ` +
                 presets.scaleChange
               }
-              onClick={() => setMode(!mode)}
+              onClick={() => setMode("")}
             >
               <i className={` fas fa-xmark `}></i>
             </button>
 
             <div className={` flex flex-col items-center gap-2 `}>
               <div
-                className={` flex items-center justify-center w-1/2 aspect-square ${Global.colors.frontground1} rounded-full border-3 ${Global.colors.border} `}
-                onClick={() => {
-                  setItemsMenu(!itemsMenu);
-                }}
+                className={` flex flex-col items-center justify-center w-8/10 aspect-square `}
               >
-                <i className={` fas fa-${icon} text-8xl `}></i>
+                <div
+                  className={
+                    ` flex items-center justify-center w-4/5 aspect-square ${Global.colors.frontground1} rounded-full border-3 ${Global.colors.border} ` +
+                    presets.scaleChange
+                  }
+                  onClick={() => {
+                    setItemsMenu(!itemsMenu);
+                  }}
+                >
+                  <i className={` fas fa-${icon} text-8xl `}></i>
+                </div>
+                <span
+                  className={` font-bold text-2xl ` + presets.scaleChange}
+                  onClick={() => {
+                    setItemsMenu(!itemsMenu);
+                  }}
+                >
+                  Imagem
+                </span>
               </div>
 
               <div className={` flex flex-col `}>
@@ -196,7 +221,6 @@ function Inventory() {
               </button>
             </div>
           </section>
-
         </section>
       </Body>
       <Footer colors={Global.colors}></Footer>

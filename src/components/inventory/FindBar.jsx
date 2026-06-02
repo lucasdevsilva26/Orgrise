@@ -1,4 +1,4 @@
-import { Global } from "../main";
+import { Global } from "../../main";
 
 function FindBar({ presets }) {
   return (
