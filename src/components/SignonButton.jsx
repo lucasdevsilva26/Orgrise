@@ -6,7 +6,7 @@ function SignonButton({ presets, extraClasses }) {
 
   return (
     <button
-          className={presets.bgButton + presets.scaleChange + extraClasses + ` ${Global.logged ? 'hidden!' : ''} `}
+          className={presets.bgButton + presets.scaleChange + extraClasses + ` ${Global.logged ? 'hidden!' : ''} `} onClick={() => navigate('/signon')}
         >
           Cadastrar-se
         </button>

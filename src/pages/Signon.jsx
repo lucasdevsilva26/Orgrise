@@ -6,9 +6,9 @@ import { useNavigate } from "react-router";
 
 import { Global } from "../main";
 
-function Login() {
+function Signon() {
   const presets = {
-    title: `font-bold text-6xl ${Global.colors.title} `,
+    title: `font-bold text-4xl ${Global.colors.title} sm:text-6xl`,
     parag: "pl-3",
     bgButton: `cursor-pointer w-100 px-4 h-max py-2 bg-linear-to-r ${Global.colors.buttonBg} rounded-4xl font-bold text-white text-3xl`,
     scaleChange: ` duration-350 hover:scale-95 `,
@@ -31,7 +31,7 @@ function Login() {
               Global.logged = true
             }}
           >
-            <h1 className={presets.title}>Login</h1>
+            <h1 className={presets.title}>Cadastro</h1>
 
             <LoginSignonInput
               name={"Email"}
@@ -47,12 +47,19 @@ function Login() {
               colors={Global.colors}
             ></LoginSignonInput>
 
+            <LoginSignonInput
+              name={"Confirmar senha"}
+              type={"text"}
+              toggleVisibility={true}
+              colors={Global.colors}
+            ></LoginSignonInput>
+
             <div className={` w-1/2 `}>
               <button
                 className={presets.bgButton + presets.scaleChange + ` w-full `}
                 type="submit"
               >
-                Entrar
+                Criar conta
               </button>
             </div>
           </form>
@@ -62,4 +69,4 @@ function Login() {
     </>
   );
 }
-export default Login;
+export default Signon;

@@ -5,7 +5,7 @@ function LoginSignonInput({ name, type, toggleVisibility, colors }) {
 
   return (
     <article>
-      <div className="flex flex-col w-100">
+      <div className="flex flex-col w-full">
         <label htmlFor="" className={`flex flex-col text-2xl font-bold`}>
           {name}
         </label>
@@ -18,11 +18,11 @@ function LoginSignonInput({ name, type, toggleVisibility, colors }) {
           />
 
           <button
-            className={`cursor-pointer ${toggleVisibility ? "" : "hidden"}`}
+            className={`cursor-pointer ${toggleVisibility ? "" : "hidden"} relative`}
             type="button"
             onClick={() => setVisibility(!visibility)}
           >
-            <i className={(visibility ? " fas fa-eye" : " fas fa-eye-slash") + ` text-3xl ${colors.buttonText}`}></i>
+            <i className={(visibility ? " fas fa-eye" : " fas fa-eye-slash") + ` text-3xl ${colors.buttonText} absolute top-1/2 right-0 -translate-y-1/2 `}></i>
           </button>
         </div>
       </div>

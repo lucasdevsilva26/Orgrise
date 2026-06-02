@@ -9,6 +9,7 @@ import Landing from "./pages/Landing";
 import Settings from "./pages/Settings";
 import Charts from "./pages/Charts";
 import Inventory from "./pages/Inventory";
+import Signon from "./pages/Signon";
 
 const themeDuration = " duration-1000! ";
 
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
   {
     path: "/login",
     element: <Login></Login>,
+  },
+  {
+    path: "/signon",
+    element: <Signon></Signon>,
   },
   {
     path: "/landing",
