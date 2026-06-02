@@ -1,31 +1,22 @@
-import Header from "../components/Header";
+import Body from "../components/Body";
 import Footer from "../components/Footer";
-import "./landing.css";
-import { useState } from "react";
-import CreateMenu from "../components/CreateMenu";
-import SideBar from "../components/SideBar";
-import SideMenus from "../components/SideMenus";
+import Header from "../components/Header";
+
+import { Global } from "../main";
 
 function Landing() {
-  const [sideMenuState, changeSideMenuState] = useState(false);
+  const presets = {};
 
   return (
     <>
-      <Header
-        sideMenuState={sideMenuState}
-        changeSideMenuState={changeSideMenuState}
-      ></Header>
-
-      <main id="landing">
-        <h1>Bem vindo!</h1>
-
-        <SideBar></SideBar>
-        <SideMenus sideMenuState={sideMenuState}></SideMenus>
-
-        <CreateMenu></CreateMenu>
-      </main>
-
-      <Footer></Footer>
+      <Header colors={Global.colors}></Header>
+      <Body colors={Global.colors} direction={"flex-row"}>
+        <section className={` flex flex-col items-center w-full py-10 `}>
+          <h1 className={` text-4xl font-bold `}>Como começar?</h1>
+        <p></p>
+        </section>
+      </Body>
+      <Footer colors={Global.colors}></Footer>
     </>
   );
 }

@@ -1,111 +1,15 @@
-:root {
+@import "tailwindcss";
+
+* {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  --textColor: #40618b;
-
-  --buttonColor1: #368cd3;
-  --buttonColor2: #3640d3;
-
-  --bgButtonColor: rgb(197, 228, 255);
-
-  --bgColor1: rgb(244, 244, 244);
-  --bgColor2: rgb(222, 222, 222);
-  --bgColor3: rgb(200, 200, 200);
-
-  --errorColor: rgb(231, 76, 82);
-
-  --mainColor1: #36d3a6;
-  --mainColor2: #006eff;
-
-  --linkColor: purple;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-
-  border: none;
-  background: none;
-
-  font-family: "Roboto", sans-serif;
-  color: var(--textColor);
-
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
+@media (prefers-color-scheme: dark) {
+  :root {
+  }
 }
 
-html,
-body,
-#root {
-  display: flex;
-  flex-direction: column;
-
-  width: 100vw;
-  min-height: 100vh;
-
-  background:
-    radial-gradient(circle at 0% 0%, rgb(232, 255, 244), transparent 40%),
-    radial-gradient(circle at 100% 100%, rgb(224, 224, 255), transparent 40%),
-    white;
-
-  overflow-x: hidden;
-  scrollbar-width: none;
-}
-
-button,
-button span,
-a,
-input {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  color: transparent;
-
-  background-image: linear-gradient(var(--buttonColor1), var(--buttonColor2));
-  background-clip: text;
-
-  cursor: pointer;
-}
-label {
-  cursor: pointer;
-}
-
-h1 {
-  filter: brightness(0.75);
-}
-
-.coloredButton {
-  overflow: hidden;
-  background: linear-gradient(var(--buttonColor1), var(--buttonColor2));
-  color: white;
-}
-
-.disabledButton {
-  position: relative;
-  cursor: not-allowed;
-
-  transform: scale(0.95);
-  filter: grayscale(.675) brightness(1.25);
-
-  transition: 1s ease;
-}
-
-.responButton {
-  transform: scale(0.95);
-  transition: 0.5s;
-}
-.responButton:hover {
-  transform: scale(1);
-}
-
-.textShadow {
-  text-shadow: 0.15rem 0.15rem 0rem rgba(0, 0, 0, 0.25);
-}
-.boxShadow {
-  box-shadow: 0.25rem 0.25rem 0rem rgba(0, 0, 0, 0.25);
-}
