@@ -7,15 +7,15 @@ import SignonButton from "./SignonButton";
 
 import { Global } from "../main";
 
-function Header({ colors }) {
+function Header() {
   const presets = {
-    textButton: `cursor-pointer ${colors.buttonText} px-3 rounded-4xl`,
-    borderButtonBg: `cursor-pointer w-max px-1 h-max py-0.75 bg-linear-to-r ${colors.buttonBg} rounded-4xl`,
-    borderButtonFg: `flex items-center justify-center w-full px-2 ${colors.frontground0} rounded-4xl ${colors.buttonText}`,
-    bgButton: `cursor-pointer w-max px-4 h-max py-1.5 bg-linear-to-r ${colors.buttonBg} rounded-4xl text-white`,
+    textButton: `cursor-pointer ${Global.colors.buttonText} px-3 rounded-4xl`,
+    borderButtonBg: `cursor-pointer w-max px-1 h-max py-0.75 bg-linear-to-r ${Global.colors.buttonBg} rounded-4xl`,
+    borderButtonFg: `flex items-center justify-center w-full px-2 ${Global.colors.frontground0} rounded-4xl ${Global.colors.buttonText}`,
+    bgButton: `cursor-pointer w-max px-4 h-max py-1.5 bg-linear-to-r ${Global.colors.buttonBg} rounded-4xl text-white`,
     scaleChange: ` duration-350 hover:scale-95 cursor-pointer`,
-    bgChange: ` ${colors.selection} h-full`,
-    button: ` flex items-center justify-center gap-3 w-full px-2 py-2 bg-red-300 rounded-4xl font-bold text-white ${colors.buttonBg} `,
+    bgChange: ` ${Global.colors.selection} h-full`,
+    button: ` flex items-center justify-center gap-3 w-full px-2 py-2 bg-red-300 rounded-4xl font-bold text-white ${Global.colors.buttonBg} `,
   };
   const navigate = useNavigate();
   const [sideBar, setSideBar] = useState(false);
@@ -42,10 +42,10 @@ function Header({ colors }) {
 
   return (
     <header
-      className={`flex items-center justify-evenly w-full h-15 ${colors.frontground0} border-b-3 ${colors.border} overflow-x-hidden font-bold text-2xl ${colors.text} relative`}
+      className={`flex items-center justify-evenly w-full h-15 ${Global.colors.frontground0} border-b-3 ${Global.colors.border} overflow-x-hidden font-bold text-2xl ${Global.colors.text} relative`}
     >
       <aside
-        className={`flex flex-col items-center gap-5 w-50 h-full px-2 pt-5 fixed top-0 left-full ${sideBar ? "-translate-x-full" : "translate-x-0"} border-l-2 border-l-teal-500 ${colors.frontground0} z-50 duration-500`}
+        className={`flex flex-col items-center gap-5 w-50 h-full px-2 pt-5 fixed top-0 left-full ${sideBar ? "-translate-x-full" : "translate-x-0"} border-l-2 border-l-teal-500 ${Global.colors.frontground0} z-50 duration-500`}
       >
         <StartButton presets={presets} extraClasses={" w-full! "}></StartButton>
         <ContentButton
@@ -60,7 +60,7 @@ function Header({ colors }) {
 
         <button
           className={
-            presets.scaleChange + colors.buttonText + " cursor-pointer " + ""
+            presets.scaleChange + Global.colors.buttonText + " cursor-pointer " + ""
           }
           onClick={() => setSideBar(false)}
         >
@@ -69,7 +69,7 @@ function Header({ colors }) {
       </aside>
 
       <aside
-        className={`flex flex-col items-center gap-4 w-50 px-6 h-full py-18 ${colors.background} border-r-2 ${colors.border} fixed top-0 right-full text-base! ${sideMenus ? "translate-x-full" : "translate-x-0"} duration-500 ${Global.logged ? "" : "hidden"} z-50`}
+        className={`flex flex-col items-center gap-4 w-50 px-6 h-full py-18 ${Global.colors.background} border-r-2 ${Global.colors.border} fixed top-0 right-full text-base! ${sideMenus ? "translate-x-full" : "translate-x-0"} duration-500 ${Global.logged ? "" : "hidden"} z-50`}
       >
         {menus.map((menuUnit) => {
           return (
@@ -92,7 +92,7 @@ function Header({ colors }) {
 
         <button
           className={
-            `flex items-center justify-center absolute top-18 left-full ml-2 w-10 h-10 rounded-4xl ${colors.buttonBg} text-white font-bold text-3xl ${sideMenus ? "rotate-180" : "rotate-0"} duration-1000` +
+            `flex items-center justify-center absolute top-18 left-full ml-2 w-10 h-10 rounded-4xl ${Global.colors.buttonBg} text-white font-bold text-3xl ${sideMenus ? "rotate-180" : "rotate-0"} duration-1000` +
             presets.scaleChange
           }
           onClick={() => setSideMenus(!sideMenus)}
@@ -102,7 +102,7 @@ function Header({ colors }) {
       </aside>
 
       <h1
-        className={`cursor-pointer text-3xl ${colors.title} ${presets.scaleChange}`}
+        className={`cursor-pointer text-3xl ${Global.colors.title} ${presets.scaleChange}`}
         onClick={() => {
           navigate("/");
           setSideBar(false);

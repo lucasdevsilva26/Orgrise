@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Charts from "./pages/Charts";
 import Inventory from "./pages/Inventory";
 import Signon from "./pages/Signon";
+import Customers from "./pages/Customers";
 
 const themeDuration = " duration-1000! ";
 
@@ -26,11 +27,11 @@ const lightTheme = {
   selection: ` bg-blue-200 `,
 };
 const darkTheme = {
-  background: ` bg-gray-800 ${themeDuration}`,
-  frontground0: "bg-gray-700",
-  frontground1: ` bg-gray-600 ${themeDuration} `,
-  frontground2: ` bg-gray-500 ${themeDuration} `,
-  border: ` border-teal-500 ${themeDuration}`,
+  background: ` bg-gray-950 ${themeDuration}`,
+  frontground0: "bg-gray-900",
+  frontground1: ` bg-gray-800 ${themeDuration} `,
+  frontground2: ` bg-gray-700 ${themeDuration} `,
+  border: ` border-teal-400 ${themeDuration}`,
   title: ` text-white `,
   text: ` text-teal-100 ${themeDuration}`,
   buttonText: ` text-teal-200 ${themeDuration}`,
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
   {
     path: "/inventory",
     element: <Inventory></Inventory>
+  },
+  {
+    path: "/customers",
+    element: <Customers></Customers>
   },
   {
     path: "/settings",

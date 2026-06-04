@@ -119,7 +119,7 @@ function Inventory() {
   return (
     <>
       <Header colors={Global.colors}></Header>
-      <Body colors={Global.colors} direction={` flex-col `}>
+      <Body direction={` flex-col `}>
         <section className={` flex flex-col h-max `}>
           <ToolBar presets={presets} mode={mode} setMode={setMode}></ToolBar>
           <FindBar presets={presets}></FindBar>
