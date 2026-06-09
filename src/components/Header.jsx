@@ -60,7 +60,10 @@ function Header() {
 
         <button
           className={
-            presets.scaleChange + Global.colors.buttonText + " cursor-pointer " + ""
+            presets.scaleChange +
+            Global.colors.buttonText +
+            " cursor-pointer " +
+            ""
           }
           onClick={() => setSideBar(false)}
         >
@@ -102,12 +105,37 @@ function Header() {
       </aside>
 
       <h1
-        className={`cursor-pointer text-3xl ${Global.colors.title} ${presets.scaleChange}`}
+        className={`flex place-items-center gap-2 cursor-pointer text-3xl ${Global.colors.title} ${presets.scaleChange}`}
         onClick={() => {
           navigate("/");
           setSideBar(false);
         }}
       >
+        <section className=" w-8 h-8 relative ">
+          <div
+            className={` w-1 h-3 -rotate-45 bg-amber-400 absolute top-1/2 left-1/2 -translate-1/2 `}
+          ></div>
+          <div
+            className={` w-1 h-1.5 bg-amber-400 absolute top-1/2 left-4/5 -translate-1/2 `}
+          ></div>
+          <div
+            className={` w-1.5 h-1 bg-amber-400 absolute top-4/5 left-1/2 -translate-1/2 `}
+          ></div> 
+
+          <div
+            className={` w-4 h-4 border-3 border-red-500 rounded-full absolute top-1/4 left-1/4 -translate-1/2 `}
+          ></div>
+          <div
+            className={` w-4 h-4 border-4 border-purple-800 rounded-full absolute top-4/4 left-4/4 -translate-1/1 `}
+          ></div>
+
+          <div
+            className={` w-3 h-3 border-2 border-blue-500 rounded-full absolute top-1/4 left-4/4 -translate-x-1/1 -translate-y-1/2 `}
+          ></div>
+          <div
+            className={` w-3 h-3 border-2 border-teal-500 rounded-full absolute top-4/4 left-1/4 -translate-x-1/2 -translate-y-1/1`}
+          ></div>
+        </section>
         Orgrise
       </h1>
 

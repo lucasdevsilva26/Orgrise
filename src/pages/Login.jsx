@@ -47,13 +47,14 @@ function Login() {
               colors={Global.colors}
             ></LoginSignonInput>
 
-            <div className={` w-1/2 `}>
+            <div className={` flex flex-col place-items-center w-5/6 `}>
               <button
                 className={presets.bgButton + presets.scaleChange + ` w-full `}
                 type="submit"
               >
                 Entrar
               </button>
+              <span className=" text-violet-500 font-bold cursor-pointer "  onClick={() => navigate("/signon")}>Não possuí uma conta? Clique aqui.</span>
             </div>
           </form>
         </section>
