@@ -93,7 +93,7 @@ function Landing() {
         <section
           className={` flex flex-col items-center gap-10 w-full py-10 relative `}
         >
-          <h1 className={` text-4xl font-bold ${Global.colors.title} `}>
+          <h1 className={` text-5xl font-bold ${Global.colors.title} `}>
             Como começar?
           </h1>
 

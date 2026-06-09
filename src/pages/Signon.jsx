@@ -5,7 +5,7 @@ import LoginSignonInput from "../components/header/LoginSignonInput";
 import { useNavigate } from "react-router";
 
 import { Global } from "../main";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Signon() {
   const presets = {
@@ -63,13 +63,13 @@ function Signon() {
           storage: [],
           orders: [],
           customers: [],
-          invoices:[],
+          invoices: [],
           finance: [],
-          employees:[],
-          schedule:[],
-          reports:[],
+          employees: [],
+          schedule: [],
+          reports: [],
           suppliers: [],
-          alerts:[]
+          alerts: [],
         },
       ];
 
@@ -77,6 +77,12 @@ function Signon() {
       setUserData(newData);
     }
   }
+
+  useEffect(() => {
+    if (localStorage.getItem("logged") !== "false") {
+      navigate("/landing");
+    }
+  });
 
   return (
     <>

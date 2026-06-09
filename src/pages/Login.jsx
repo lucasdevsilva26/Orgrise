@@ -5,7 +5,7 @@ import LoginSignonInput from "../components/header/LoginSignonInput";
 import { useNavigate } from "react-router";
 
 import { Global } from "../main";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Login() {
   const presets = {
@@ -51,6 +51,12 @@ function Login() {
   const isValid = Object.values(validations).every((field) =>
     Object.values(field).every(([failed]) => !failed),
   );
+
+  useEffect(() => {
+    if (localStorage.getItem("logged") !== "false") {
+      navigate("/landing");
+    }
+  });
 
   return (
     <>
