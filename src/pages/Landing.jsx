@@ -7,6 +7,85 @@ import { Global } from "../main";
 function Landing() {
   const presets = {};
 
+  const cards = [
+    {
+      icon: "fas fa-brain",
+      title: "Tutorial",
+      Description:
+        "Acesse guias rápidos e instruções para aprender a utilizar todas as funcionalidades do sistema.",
+    },
+    {
+      icon: "fas fa-chart-column",
+      title: "Gráficos",
+      Description:
+        "Visualize informações importantes do seu negócio através de gráficos e indicadores de desempenho.",
+    },
+    {
+      icon: "fas fa-boxes-stacked",
+      title: "Estoque",
+      Description:
+        "Cadastre, edite e acompanhe todos os produtos disponíveis em seu estoque.",
+    },
+    {
+      icon: "fas fa-truck-fast",
+      title: "Pedidos",
+      Description:
+        "Gerencie os pedidos realizados pelos clientes, acompanhe status e histórico de vendas.",
+    },
+    {
+      icon: "fas fa-people-group",
+      title: "Clientes",
+      Description:
+        "Cadastre e consulte informações dos seus clientes para facilitar o atendimento.",
+    },
+    {
+      icon: "fas fa-file-contract",
+      title: "Faturas",
+      Description: "Crie, visualize e acompanhe faturas e cobranças emitidas.",
+    },
+    {
+      icon: "fab fa-cash-app",
+      title: "Financeiro",
+      Description:
+        "Monitore receitas, despesas e tenha uma visão geral da saúde financeira da empresa.",
+    },
+    {
+      icon: "fas fa-user-tie",
+      title: "Funcionários",
+      Description:
+        "Gerencie informações da equipe, cargos e dados dos colaboradores.",
+    },
+    {
+      icon: "far fa-calendar-days",
+      title: "Agenda",
+      Description: "Organize compromissos, reuniões e tarefas importantes.",
+    },
+    {
+      icon: "fas fa-file-lines",
+      title: "Relatórios",
+      Description:
+        "Gere relatórios detalhados para análise e tomada de decisões.",
+    },
+    {
+      icon: "fas fa-handshake",
+      title: "Fornecedores",
+      Description:
+        "Cadastre e acompanhe os fornecedores responsáveis pelo abastecimento da empresa.",
+    },
+    {
+      icon: "fas fa-triangle-exclamation",
+      title: "Alertas",
+      Description:
+        "Receba notificações sobre eventos importantes, pendências e situações que exigem atenção.",
+    },
+    {
+      icon: "fas fa-screwdriver-wrench",
+      title: "Configurações",
+      Description:
+        "Personalize o sistema de acordo com as necessidades da sua empresa.",
+    },
+  ];
+
   return (
     <>
       <Header colors={Global.colors}></Header>
@@ -35,18 +114,24 @@ function Landing() {
             </div>
           </div>
 
-          <section>
-            <div className={`flex flex-col place-items-center gap-4 w-3/10 p-5 rounded-2xl ${Global.colors.frontground0} border-2 ${Global.colors.border} flip3D swordGlow movimentAnim`}>
-              <i className={`fas fa-brain text-5xl ${Global.colors.title}`}></i>
-              <h1 className={`text-3xl font-bold ${Global.colors.title}`}>Início</h1>
-              <p className="text-xl text-justify">Estoque Cadastre, edite e acompanhe todos os produtos disponíveis em seu estoque.</p>
-            </div>
+          <section className={`flex flex-wrap gap-10 justify-center w-full px-10`}>
+            {cards.map((card) => {
+              return (
+                <div
+                  key={crypto.randomUUID()}
+                  className={`flex flex-col place-items-center gap-4 w-100 p-5 rounded-2xl ${Global.colors.frontground0} border-2 ${Global.colors.border} flip3D swordGlow movimentAnim`}
+                >
+                  <i
+                    className={`${card.icon} text-5xl ${Global.colors.title}`}
+                  ></i>
+                  <h1 className={`text-3xl font-bold ${Global.colors.title}`}>
+                    {card.title}
+                  </h1>
+                  <p className="text-xl text-justify">{card.Description}</p>
+                </div>
+              );
+            })}
           </section>
-
-          <span className=" flex place-items-center gap-2 absolute text-yellow-500 font-bold left-1/25 animate-bounce">
-            <i className="fas fa-hand-point-left text-yellow-500 text-2xl"></i>
-            Clique aqui para a abrir o menu!
-          </span>
         </section>
       </Body>
       <Footer colors={Global.colors}></Footer>

@@ -24,10 +24,10 @@
 }
 @keyframes moviment {
   from {
-    --pos: 0%;
+    --pos: -400%;
   }
   to {
-    --pos: 100%;
+    --pos: 400%;
   }
 }
 .swordGlow::after {
@@ -47,7 +47,7 @@
     transparent calc(0% + 5% + var(--pos))
   );
 
-  animation: moviment 2s ease infinite;
+  animation: moviment 8s ease infinite;
 }
 
 @keyframes flip {
