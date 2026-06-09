@@ -38,7 +38,7 @@ function Signon() {
     password: {
       isTiny: [
         password.trim().length < 8,
-        "A senha precisa ser maior ou igual à 8 caracteres.",
+        "A senha precisa ser maior ou igual à 8 caracteres!",
       ],
     },
     confirmPassword: {
