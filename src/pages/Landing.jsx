@@ -5,8 +5,6 @@ import Header from "../components/header/Header";
 import { Global } from "../main";
 
 function Landing() {
-  const presets = {};
-
   const cards = [
     {
       icon: "fas fa-brain",
@@ -52,6 +50,7 @@ function Landing() {
     {
       icon: "fas fa-user-tie",
       title: "Funcionários",
+
       Description:
         "Gerencie informações da equipe, cargos e dados dos colaboradores.",
     },
