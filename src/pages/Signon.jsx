@@ -1,7 +1,7 @@
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
-import LoginSignonInput from "../components/LoginSignonInput";
+import LoginSignonInput from "../components/header/LoginSignonInput";
 import { useNavigate } from "react-router";
 
 import { Global } from "../main";
@@ -57,12 +57,24 @@ function Signon() {
     if (isValid && formValidity) {
       const newData = [
         ...userData,
-        { email: email.trim().toLowerCase(), password: password.trim() },
+        {
+          email: email.trim().toLowerCase(),
+          password: password.trim(),
+          storage: [],
+          orders: [],
+          customers: [],
+          invoices:[],
+          finance: [],
+          employees:[],
+          schedule:[],
+          reports:[],
+          suppliers: [],
+          alerts:[]
+        },
       ];
 
       localStorage.setItem("userData", JSON.stringify(newData));
       setUserData(newData);
-      console.log(newData);
     }
   }
 
@@ -82,7 +94,7 @@ function Signon() {
               saveData(form.currentTarget.checkValidity());
               if (isValid && form.currentTarget.checkValidity()) {
                 navigate("/landing");
-                Global.logged = true;
+                localStorage.setItem("logged", true);
               }
             }}
           >
@@ -122,7 +134,11 @@ function Signon() {
               toggleVisibility={true}
               colors={Global.colors}
               setValue={setPasswordConfirm}
-              errorMsg={validations.confirmPassword.different[0] ? validations.confirmPassword.different[1] : ''}
+              errorMsg={
+                validations.confirmPassword.different[0]
+                  ? validations.confirmPassword.different[1]
+                  : ""
+              }
             ></LoginSignonInput>
 
             <div className={` flex flex-col place-items-center w-5/6 `}>
@@ -136,7 +152,12 @@ function Signon() {
                 Criar conta
               </button>
 
-              <span className=" text-violet-500 font-bold cursor-pointer "  onClick={() => navigate("/login")}>Já possuí uma conta? Clique aqui.</span>
+              <span
+                className=" text-violet-500 font-bold cursor-pointer "
+                onClick={() => navigate("/login")}
+              >
+                Já possuí uma conta? Clique aqui.
+              </span>
             </div>
           </form>
         </section>

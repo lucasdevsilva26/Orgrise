@@ -42,12 +42,15 @@ const darkTheme = {
 const browserTheme = !window.matchMedia("(prefers-color-scheme: dark").matches;
 
 export const Global = {
-  logged: false,
   theme: browserTheme,
   colors: browserTheme ? lightTheme : darkTheme,
   oldTheme: lightTheme,
   darkColors: darkTheme,
 };
+
+if (!localStorage.getItem("logged")) {
+  localStorage.setItem("logged", false);
+}
 
 const router = createBrowserRouter([
   {
@@ -72,15 +75,15 @@ const router = createBrowserRouter([
   },
   {
     path: "/charts",
-    element: <Charts></Charts>
+    element: <Charts></Charts>,
   },
   {
     path: "/inventory",
-    element: <Inventory></Inventory>
+    element: <Inventory></Inventory>,
   },
   {
     path: "/customers",
-    element: <Customers></Customers>
+    element: <Customers></Customers>,
   },
   {
     path: "/settings",

@@ -1,6 +1,6 @@
 import Body from "../components/Body";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import MyPieChart from "../components/charts/MyPieChart";
 
 import { Global } from "../main";

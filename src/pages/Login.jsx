@@ -1,7 +1,7 @@
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
-import LoginSignonInput from "../components/LoginSignonInput";
+import LoginSignonInput from "../components/header/LoginSignonInput";
 import { useNavigate } from "react-router";
 
 import { Global } from "../main";
@@ -40,10 +40,11 @@ function Login() {
         "Preencha o campo Senha para continuar!",
       ],
       passwordWrong: [
-        password !== userData.find(
-          (data) => data.email === email.trim().toLowerCase() || "nada",
-        ).password,
-        "Senha errada, tente outra!"
+        password !==
+          userData.find(
+            (data) => data.email === email.trim().toLowerCase() || "nada",
+          )?.password,
+        "Senha errada, tente outra!",
       ],
     },
   };
@@ -66,7 +67,7 @@ function Login() {
 
               if (form.currentTarget.checkValidity() && isValid) {
                 navigate("/landing");
-                Global.logged = true;
+                localStorage.setItem("logged", true);
               }
             }}
           >
@@ -104,7 +105,11 @@ function Login() {
 
             <div className={` flex flex-col place-items-center w-5/6 `}>
               <button
-                className={presets.bgButton + presets.scaleChange + ` w-full ${isValid ? "presets.scaleChange" : "opacity-50 cursor-default!"} `}
+                className={
+                  presets.bgButton +
+                  presets.scaleChange +
+                  ` w-full ${isValid ? "presets.scaleChange" : "opacity-50 cursor-default!"} `
+                }
                 type="submit"
               >
                 Entrar

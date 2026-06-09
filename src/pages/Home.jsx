@@ -1,4 +1,4 @@
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
 
@@ -15,7 +15,8 @@ import { Global } from "../main";
 function Home() {
   const presets = {
     primaryDivs: "flex flex-col items-center gap-1 md:items-start md:flex-row",
-    images: "h-full self-center xs:max-w-xs sm:max-w-md md:max-w-md lg:max-w-2xl md:w-1/2",
+    images:
+      "h-full self-center xs:max-w-xs sm:max-w-md md:max-w-md lg:max-w-2xl md:w-1/2",
 
     secondDivs: "flex flex-col gap-1 md:w-1/2 h-full",
     title: ` font-bold text-2xl md:text-3xl lg:text-4xl ${Global.colors.title} `,

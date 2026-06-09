@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router";
-import { Global } from "../main";
 
 function SignonButton({ presets, extraClasses }) {
   const navigate = useNavigate();
 
   return (
     <button
-          className={presets.bgButton + presets.scaleChange + extraClasses + ` ${Global.logged ? 'hidden!' : ''} `} onClick={() => navigate('/signon')}
+          className={presets.bgButton + presets.scaleChange + extraClasses + ` ${localStorage.getItem('logged') === 'true' ? "hidden!" : ""}`} onClick={() => navigate('/signon')}
         >
           Cadastrar-se
         </button>

@@ -1,6 +1,6 @@
 import Body from "../components/Body";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 import { useState } from "react";
 import { Global } from "../main";
 import { useNavigate } from "react-router";
@@ -42,7 +42,7 @@ function Settings() {
           <button
             className={` flex items-center gap-1 w-max h-max text-red-400 ${presets.scaleChange} `}
             onClick={() => {
-              Global.logged = false;
+              localStorage.setItem('logged', false)
               navigate("/");
             }}
           >

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
-import Header from "../components/Header";
+import Header from "../components/header/Header";
 
 import { Global } from "../main";
 import ToolBar from "../components/inventory/ToolBar";

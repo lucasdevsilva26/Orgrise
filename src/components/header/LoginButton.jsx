@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { Global } from "../main";
 
 function LoginButton({ presets, extraClasses }) {
   const navigate = useNavigate();
@@ -7,7 +6,7 @@ function LoginButton({ presets, extraClasses }) {
   return (
     <button
       className={
-        presets.borderButtonBg + presets.scaleChange + extraClasses + ` ${Global.logged ? 'hidden!' : ''} `
+        presets.borderButtonBg + presets.scaleChange + extraClasses +  ` ${localStorage.getItem('logged') === 'true' ? "hidden!" : ""} `
       }
       onClick={() => navigate("/login")}
     >
