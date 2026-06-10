@@ -27,13 +27,13 @@ function ItemsList({ items, mode, colorMode, setItems }) {
 
   return (
     <section
-      className={` grid grid-rows-1 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl-grid-cols-7 2xl-grid-cols-9 justify-evenly h-full p-2 `}
+      className={` flex flex-wrap justify-evenly w-full h-max p2 `}
     >
       {items.map((item) => {
         return (
           <article
             key={item.id}
-            className={` flex items-center justify-center gap-2 m-3 w-9/10 h-9/10 border-2 ${colorMode} rounded-xl ${Global.colors.frontground0} `}
+            className={` flex items-center justify-center gap-2 m-3 w-100 h-50 border-2 ${colorMode} rounded-xl ${Global.colors.frontground0} elementPop `}
             onClick={() => {
               if (mode === "remove") {
                 removeItem(items, item);
@@ -41,13 +41,13 @@ function ItemsList({ items, mode, colorMode, setItems }) {
             }}
           >
             <div
-              className={` flex items-center justify-center w-1/2 ml-1 h-9/10 ${Global.colors.frontground1} rounded-2xl text-2xl `}
+              className={` flex items-center justify-center w-1/2 ml-1 h-9/10 ${Global.colors.frontground1} rounded-2xl `}
             >
               <i className={` fas fa-${item.icon} text-6xl `}></i>
             </div>
 
             <section
-              className={` flex flex-col items-center justify-evenly gap-2 w-1/2 h-full py-1 font-bold `}
+              className={` flex flex-col items-center justify-evenly gap-2 w-1/2 h-full py-1 font-bold text-2xl `}
             >
               <div className={presets.dataContainer + ` h-12 `}>
                 {item.Name}

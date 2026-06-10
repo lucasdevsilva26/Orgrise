@@ -55,3 +55,17 @@
     transform: rotateY(0deg);
   }
 }
+
+
+.elementPop {
+  animation: pop .5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes pop{
+  from {
+    scale: 0.5
+  }
+  to{
+    scale: 1;
+  }
+}
