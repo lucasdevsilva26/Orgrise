@@ -28,8 +28,13 @@ function Inventory() {
           ? " border-yellow-500 "
           : " border-none! ";
 
-  const [items, setItems] = useState([]);
-  const [itemsMenu, setItemsMenu] = useState(false);
+  const userData = JSON.parse(localStorage.getItem("userData")) || [];
+
+  const [items, setItems] = useState(
+    userData.find((data) => data.email === localStorage.getItem("logged"))
+      ?.storage || [],
+  );
+  const [iconsMenu, setIconsMenu] = useState(false);
 
   const [icon, setIcon] = useState("image ");
   const [name, setName] = useState("");
@@ -189,9 +194,9 @@ function Inventory() {
     { icon: "school-flag", category: "tool" },
     { icon: "school-lock", category: "tool" },
   ];
-
+  
   function createItem() {
-    setItems([
+    const newItem = [
       ...items,
       {
         id: crypto.randomUUID(),
@@ -200,7 +205,10 @@ function Inventory() {
         Price: price,
         Amount: amount,
       },
-    ]);
+    ];
+    setItems(newItem);
+
+
   }
 
   return (
@@ -212,7 +220,7 @@ function Inventory() {
             presets={presets}
             mode={mode}
             setMode={setMode}
-            setItemsMenu={setItemsMenu}
+            setIconsMenu={setIconsMenu}
           ></ToolBar>
           <FindBar presets={presets}></FindBar>
 
@@ -225,14 +233,15 @@ function Inventory() {
 
           <IconsList
             presets={presets}
-            itemsMenu={itemsMenu}
+            iconsMenu={iconsMenu}
             iconsList={iconsList}
             setIcon={setIcon}
-            setItemsMenu={() => setItemsMenu(false)}
+            setIconsMenu={() => setIconsMenu(false)}
+            setMode={setMode}
           ></IconsList>
 
           <section
-            className={` flex flex-col fixed w-100 top-1/2 left-1/2 -translate-1/2 rounded-xl p-6 ${Global.colors.frontground0} ${mode == "create" ? "flex" : "hidden"} border-3 ${Global.colors.border} ${itemsMenu ? "hidden" : ""} `}
+            className={` flex flex-col fixed w-100 top-1/2 left-1/2 -translate-1/2 rounded-xl p-6 ${Global.colors.frontground0} ${mode == "create" ? "flex" : "hidden"} border-3 ${Global.colors.border} ${iconsMenu ? "hidden" : ""} `}
           >
             <button
               className={
@@ -241,7 +250,7 @@ function Inventory() {
               }
               onClick={() => {
                 setMode("");
-                setItemsMenu(false);
+                setIconsMenu(false);
               }}
             >
               <i className={` fas fa-xmark `}></i>
@@ -257,7 +266,7 @@ function Inventory() {
                     presets.scaleChange
                   }
                   onClick={() => {
-                    setItemsMenu(!itemsMenu);
+                    setIconsMenu(!iconsMenu);
                   }}
                 >
                   <i className={` fas fa-${icon} text-8xl `}></i>
@@ -265,7 +274,7 @@ function Inventory() {
                 <span
                   className={` font-bold text-2xl ` + presets.scaleChange}
                   onClick={() => {
-                    setItemsMenu(!itemsMenu);
+                    setIconsMenu(!iconsMenu);
                   }}
                 >
                   Imagem

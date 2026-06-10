@@ -42,7 +42,7 @@ function Login() {
       passwordWrong: [
         password !==
           userData.find(
-            (data) => data.email === email.trim().toLowerCase() || "nada",
+            (data) => data.email === email.trim().toLowerCase(),
           )?.password,
         "Senha errada, tente outra!",
       ],
@@ -70,10 +70,11 @@ function Login() {
             className={`flex flex-col items-center justify-center gap-10 w-8/10 max-w-110 px-4 py-10 text-justify wrap-break-word ${Global.colors.frontground0} rounded-2xl shadow-2xl`}
             onSubmit={(form) => {
               form.preventDefault();
+              const validEmail = email.trim().toLowerCase()
 
               if (form.currentTarget.checkValidity() && isValid) {
                 navigate("/landing");
-                localStorage.setItem("logged", true);
+                localStorage.setItem("logged", validEmail);
               }
             }}
           >

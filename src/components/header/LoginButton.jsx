@@ -6,7 +6,7 @@ function LoginButton({ presets, extraClasses }) {
   return (
     <button
       className={
-        presets.borderButtonBg + presets.scaleChange + extraClasses +  ` ${localStorage.getItem('logged') === 'true' ? "hidden!" : ""} `
+        presets.borderButtonBg + presets.scaleChange + extraClasses +  ` ${localStorage.getItem('logged') !== 'false' ? "hidden!" : ""} `
       }
       onClick={() => navigate("/login")}
     >

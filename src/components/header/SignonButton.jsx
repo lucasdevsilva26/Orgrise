@@ -5,7 +5,7 @@ function SignonButton({ presets, extraClasses }) {
 
   return (
     <button
-          className={presets.bgButton + presets.scaleChange + extraClasses + ` ${localStorage.getItem('logged') === 'true' ? "hidden!" : ""}`} onClick={() => navigate('/signon')}
+          className={presets.bgButton + presets.scaleChange + extraClasses + ` ${localStorage.getItem('logged') !== 'false' ? "hidden!" : ""}`} onClick={() => navigate('/signon')}
         >
           Cadastrar-se
         </button>

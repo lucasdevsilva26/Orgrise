@@ -1,6 +1,6 @@
 import { Global } from "../../main";
 
-function ToolBar({ presets, mode, setMode, setItemsMenu }) {
+function ToolBar({ presets, mode, setMode, setIconsMenu }) {
   return (
     <section
       className={
@@ -12,7 +12,7 @@ function ToolBar({ presets, mode, setMode, setItemsMenu }) {
         className={presets.toolButton}
         onClick={() => {
           setMode(mode === "create" ? "" : "create");
-          setItemsMenu(false)
+          setIconsMenu(false)
         }}
       >
         {" "}
@@ -23,7 +23,7 @@ function ToolBar({ presets, mode, setMode, setItemsMenu }) {
         className={presets.toolButton}
         onClick={() => {
           setMode(mode === "edit" ? "" : "edit");
-          setItemsMenu(false)
+          setIconsMenu(false)
         }}
       >
         {" "}
@@ -34,7 +34,7 @@ function ToolBar({ presets, mode, setMode, setItemsMenu }) {
         className={presets.toolButton}
         onClick={() => {
           setMode(mode === "remove" ? "" : "remove");
-          setItemsMenu(false)
+          setIconsMenu(false)
         }}
       >
         {" "}

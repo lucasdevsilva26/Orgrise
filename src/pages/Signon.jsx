@@ -96,11 +96,13 @@ function Signon() {
             className={`flex flex-col items-center justify-center gap-5 w-8/10 max-w-110 px-4 py-10 text-justify wrap-break-word ${Global.colors.frontground0} rounded-2xl shadow-2xl`}
             onSubmit={(form) => {
               form.preventDefault();
-
               saveData(form.currentTarget.checkValidity());
-              if (isValid && form.currentTarget.checkValidity()) {
+
+              const validEmail = email.trim().toLowerCase()
+
+              if (form.currentTarget.checkValidity() && isValid) {
                 navigate("/landing");
-                localStorage.setItem("logged", true);
+                localStorage.setItem("logged", validEmail);
               }
             }}
           >

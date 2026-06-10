@@ -28,7 +28,7 @@ function LoggedSideBar({ presets }) {
 
   return (
     <aside
-      className={`flex flex-col items-center gap-4 w-50 px-6 h-full py-18 ${Global.colors.background} border-r-2 ${Global.colors.border} fixed top-0 right-full text-base! ${sideMenus ? "translate-x-full" : "translate-x-0"} duration-500 ${localStorage.getItem("logged") === "true" ? "" : "hidden!"} z-50`}
+      className={`flex flex-col items-center gap-4 w-50 px-6 h-full py-18 ${Global.colors.background} border-r-2 ${Global.colors.border} fixed top-0 right-full text-base! ${sideMenus ? "translate-x-full" : "translate-x-0"} duration-500 ${localStorage.getItem("logged") !== "false" ? "" : "hidden!"} z-50`}
     >
       {menus.map((menuUnit) => {
         return (
