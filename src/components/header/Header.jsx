@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
 import StartButton from "./StartButton";
 import ContentButton from "./ContentButton";
 import LoginButton from "./LoginButton";
@@ -19,7 +19,17 @@ function Header() {
     button: ` flex items-center justify-center gap-3 w-full px-2 py-2 bg-red-300 rounded-4xl font-bold text-white ${Global.colors.buttonBg} `,
   };
   const navigate = useNavigate();
+  const location = useLocation();
   const [sideBar, setSideBar] = useState(false);
+
+  const loggedOutPages = ['/', '/content', '/login', '/signon']
+
+  useEffect(() => {
+    if (localStorage.getItem("logged") === "false" && !loggedOutPages.includes(location.pathname)) {
+      navigate("/");
+      console.log('aaa')
+    }
+  });
 
   return (
     <header

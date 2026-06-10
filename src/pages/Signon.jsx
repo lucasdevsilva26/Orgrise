@@ -5,7 +5,7 @@ import LoginSignonInput from "../components/header/LoginSignonInput";
 import { useNavigate } from "react-router";
 
 import { Global } from "../main";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Signon() {
   const presets = {
@@ -77,12 +77,6 @@ function Signon() {
       setUserData(newData);
     }
   }
-
-  useEffect(() => {
-    if (localStorage.getItem("logged") !== "false") {
-      navigate("/landing");
-    }
-  });
 
   return (
     <>

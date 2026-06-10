@@ -5,7 +5,7 @@ import LoginSignonInput from "../components/header/LoginSignonInput";
 import { useNavigate } from "react-router";
 
 import { Global } from "../main";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function Login() {
   const presets = {
@@ -19,9 +19,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData")) || [],
-  );
+  const userData = JSON.parse(localStorage.getItem("userData")) || []
 
   const validations = {
     email: {
@@ -51,12 +49,6 @@ function Login() {
   const isValid = Object.values(validations).every((field) =>
     Object.values(field).every(([failed]) => !failed),
   );
-
-  useEffect(() => {
-    if (localStorage.getItem("logged") !== "false") {
-      navigate("/landing");
-    }
-  });
 
   return (
     <>

@@ -28,7 +28,9 @@ function Inventory() {
           ? " border-yellow-500 "
           : " border-none! ";
 
-  const userData = JSON.parse(localStorage.getItem("userData")) || [];
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userData")) || [],
+  );
 
   const [items, setItems] = useState(
     userData.find((data) => data.email === localStorage.getItem("logged"))
@@ -194,9 +196,10 @@ function Inventory() {
     { icon: "school-flag", category: "tool" },
     { icon: "school-lock", category: "tool" },
   ];
-  
+
   function createItem() {
-    const newItem = [
+    setMode("");
+    const newItems = [
       ...items,
       {
         id: crypto.randomUUID(),
@@ -206,9 +209,17 @@ function Inventory() {
         Amount: amount,
       },
     ];
-    setItems(newItem);
 
+    setItems(newItems);
 
+    const newUserData = structuredClone(userData);
+
+    newUserData.find(
+      (data) => data.email === localStorage.getItem("logged"),
+    ).storage = newItems;
+
+    setUserData(newUserData);
+    localStorage.setItem("userData", JSON.stringify(newUserData));
   }
 
   return (
@@ -277,7 +288,7 @@ function Inventory() {
                     setIconsMenu(!iconsMenu);
                   }}
                 >
-                  Imagem
+                  Selecione a Imagem
                 </span>
               </div>
 
