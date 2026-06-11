@@ -19,7 +19,7 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const userData = JSON.parse(localStorage.getItem("userData")) || []
+  const userData = JSON.parse(localStorage.getItem("userData")) || [];
 
   const validations = {
     email: {
@@ -39,9 +39,8 @@ function Login() {
       ],
       passwordWrong: [
         password !==
-          userData.find(
-            (data) => data.email === email.trim().toLowerCase(),
-          )?.password,
+          userData.find((data) => data.email === email.trim().toLowerCase())
+            ?.password,
         "Senha errada, tente outra!",
       ],
     },
@@ -62,7 +61,7 @@ function Login() {
             className={`flex flex-col items-center justify-center gap-10 w-8/10 max-w-110 px-4 py-10 text-justify wrap-break-word ${Global.colors.frontground0} rounded-2xl shadow-2xl`}
             onSubmit={(form) => {
               form.preventDefault();
-              const validEmail = email.trim().toLowerCase()
+              const validEmail = email.trim().toLowerCase();
 
               if (form.currentTarget.checkValidity() && isValid) {
                 navigate("/landing");

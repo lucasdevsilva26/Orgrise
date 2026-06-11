@@ -92,7 +92,7 @@ function Signon() {
               form.preventDefault();
               saveData(form.currentTarget.checkValidity());
 
-              const validEmail = email.trim().toLowerCase()
+              const validEmail = email.trim().toLowerCase();
 
               if (form.currentTarget.checkValidity() && isValid) {
                 navigate("/landing");

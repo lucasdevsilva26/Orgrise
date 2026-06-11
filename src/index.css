@@ -69,3 +69,13 @@
     scale: 1;
   }
 }
+
+.recharts-wrapper:focus,
+.recharts-wrapper:focus-visible {
+  outline: none !important;
+}
+
+.recharts-surface:focus,
+.recharts-surface:focus-visible {
+  outline: none !important;
+}

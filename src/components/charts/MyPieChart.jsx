@@ -1,21 +1,24 @@
-import { Pie, PieChart, Tooltip } from "recharts";
+import { Cell, Pie, PieChart } from "recharts";
 
-const color = ["fff", "ff0", "f00"];
-
-function MyPieChart({ data, size }) {
+function MyPieChart({ data, size, valueToShow, colors }) {
+  
   return (
     <>
       <PieChart width={size[0]} height={size[1]}>
         <Pie
+          key={valueToShow}
           data={data}
-          dataKey={"value"}
-          nameKey={"name"}
+          dataKey={valueToShow}
+          nameKey={"Name"}
           outerRadius={"100%"}
           innerRadius={"75%"}
           fill="#00BAA6"
-          isAnimationActive={false}
-          className=" outline-0 "
-        />
+          className=" outline-none "
+        >
+          {data.map((entry, index) => {
+            return <Cell key={index} fill={colors[index % colors.length]} />;
+          })}
+        </Pie>
       </PieChart>
     </>
   );

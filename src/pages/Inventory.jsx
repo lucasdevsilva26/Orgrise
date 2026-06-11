@@ -205,8 +205,8 @@ function Inventory() {
         id: crypto.randomUUID(),
         icon: icon,
         Name: name,
-        Price: price,
-        Amount: amount,
+        Price: Number(price),
+        Amount: Number(amount),
       },
     ];
 
