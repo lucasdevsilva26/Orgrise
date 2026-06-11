@@ -12,7 +12,6 @@ function ItemsList({ items, mode, colorMode, setItems }) {
 
   function removeItem(items, item) {
     const newItems = items.filter((toDeleteItem) => toDeleteItem.id !== item.id);
-    console.log(newItems)
     setItems(newItems);
 
     const newUserData = structuredClone(userData);

@@ -12,6 +12,13 @@ function Charts() {
     userData.find((data) => data.email === localStorage.getItem("logged"))
       ?.storage || [];
 
+  const [page, setPage] = useState(1);
+
+  const inventoryDatas = {
+    Price: inventory.slice(0, 10).map((item) => item.Price),
+    Amount: inventory.slice(0, 10).map((item) => item.Amount),
+  };
+
   const [valueToShow, setValueToShow] = useState("Price");
   const presets = {
     button:
@@ -55,50 +62,82 @@ function Charts() {
             </div>
 
             <div
-              className={` flex flex-col place-items-center w-max h-max my-10 relative `}
+              className={` flex flex-col place-items-center gap-10 w-max h-max my-5 `}
             >
-              <h1 className={` mb-5 text-2xl font-bold ` + Global.colors.title}>
-                {valueToShow === "Price"
-                  ? "PREÇO"
-                  : valueToShow === "Amount"
-                    ? "QUANTIDADE"
-                    : valueToShow}
-              </h1>
+              <div className={` w-max h-max relative `}>
+                <MyPieChart
+                  data={inventory.slice(0, 10)}
+                  size={[750, 750]}
+                  valueToShow={valueToShow}
+                  colors={colors}
+                ></MyPieChart>
 
-              <div
-                className={` flex flex-col place-items-center mt-5 absolute left-1/2 top-1/2 -translate-1/2 font-bold text-2xl `}
-              >
-                <h1>{inventory.length}</h1>
-                <h2>Produtos Cadastrados</h2>
+                <div
+                  className={` flex flex-col place-items-center absolute left-1/2 top-1/2 -translate-1/2 font-bold text-2xl `}
+                >
+                  <h1
+                    className={
+                      ` mb-5 text-4xl font-bold ` + Global.colors.title
+                    }
+                  >
+                    {valueToShow === "Price"
+                      ? "PREÇO"
+                      : valueToShow === "Amount"
+                        ? "QUANTIDADE"
+                        : valueToShow}
+                  </h1>
+
+                  <h2>Items Cadastrados:</h2>
+                  <h3>{inventory.length}</h3>
+
+                  <h4>{`${page} / ${Math.round(inventory.length / 10)} páginas`}</h4>
+                </div>
               </div>
 
-              <MyPieChart
-                data={inventory}
-                size={[500, 500]}
-                valueToShow={valueToShow}
-                colors={colors}
-              ></MyPieChart>
+              <div className={`flex gap-4`}>
+                <button
+                  className={presets.button}
+                  onClick={() => {
+                    setPage((page - 1) % Math.round(inventory.length / 10));
+                  }}
+                >
+                  Voltar
+                </button>
+
+                <button
+                  className={presets.button}
+                  onClick={() => {
+                    setPage((page + 1) % Math.round(inventory.length / 10));
+                  }}
+                >
+                  Avançar
+                </button>
+              </div>
             </div>
           </section>
 
           <section
-            className={` flex flex-wrap items-center justify-center gap-5 w-full h-max px-10 py-4 ` + Global.colors.frontground0}
+            className={
+              ` flex flex-wrap items-center justify-center gap-5 w-full h-max px-10 py-4 ` +
+              Global.colors.frontground1
+            }
           >
-            <span
-              className={` flex place-items-center gap-2 font-bold `}
-              style={{ color: colors[0] }}
-            >
-              <i className={`fas fa-` + inventory[0].icon}></i>
-              {inventory[0].Name}
-            </span>
-
-            <span
-              className={` flex place-items-center gap-2 font-bold `}
-              style={{ color: colors[1] }}
-            >
-              <i className={`fas fa-` + inventory[1].icon}></i>
-              {inventory[1].Name}
-            </span>
+            {inventory.slice(10 * page - 10, 10 * page).map((item, index) => {
+              return (
+                <span
+                  key={index}
+                  className={` flex place-items-center gap-2 font-bold text-2xl `}
+                  style={{ color: colors[index] }}
+                >
+                  <i className={`fas fa-` + item.icon}></i>
+                  {valueToShow === "Amount"
+                    ? `${item.Name} | ${inventoryDatas[valueToShow][index]}`
+                    : valueToShow === "Price"
+                      ? `${item.Name} | ${inventoryDatas[valueToShow][index].toLocaleString("pt-br", { style: "currency", currency: "BRL" })}`
+                      : ""}
+                </span>
+              );
+            })}
           </section>
         </section>
       </Body>
