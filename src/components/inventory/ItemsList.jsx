@@ -11,7 +11,9 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
   );
 
   function removeItem(items, item) {
-    const newItems = items.filter((toDeleteItem) => toDeleteItem.id !== item.id);
+    const newItems = items.filter(
+      (toDeleteItem) => toDeleteItem.id !== item.id,
+    );
     setItems(newItems);
 
     const newUserData = structuredClone(userData);
@@ -25,45 +27,56 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
   }
 
   return (
-    <section
-      className={` flex flex-wrap justify-evenly w-full h-max my-2 `}
-    >
-      {items.filter((item) => item.Name.toLowerCase().includes(searchText.toLowerCase())).map((item) => {
-        return (
-          <article
-            key={item.id}
-            className={` flex items-center justify-center gap-2 m-2 p-4 w-100 h-60 border-2 ${colorMode} rounded-xl ${Global.colors.frontground0} elementPop `}
-            onClick={() => {
-              if (mode === "remove") {
-                removeItem(items, item);
-              }
-            }}
-          >
-            <div
-              className={` flex items-center justify-center w-2/4 ml-1 h-full ${Global.colors.frontground1} rounded-2xl`}
+    <section className={` flex flex-wrap justify-evenly w-full h-max my-2 `}>
+      {items
+        .filter((item) =>
+          item.Name.toLowerCase().includes(searchText.toLowerCase()),
+        )
+        .map((item) => {
+          return (
+            <article
+              key={item.id}
+              className={` flex items-center justify-center gap-2 m-2 p-4 w-100 h-60 border-2 ${colorMode} rounded-xl ${Global.colors.frontground0} elementPop `}
+              onClick={() => {
+                if (mode === "remove") {
+                  removeItem(items, item);
+                }
+              }}
             >
-              <i className={` fas fa-${item.icon} text-6xl `}></i>
-            </div>
-
-            <section
-              className={` flex flex-col items-center justify-evenly gap-2 w-full h-full py-1 font-bold text-2xl `}
-            >
-              <div className={presets.dataContainer + Global.colors.title + ` flex-2 `}>
-                {item.Name}
+              <div
+                className={` flex items-center justify-center w-2/4 ml-1 h-full ${Global.colors.frontground1} rounded-2xl`}
+              >
+                <i
+                  className={` fas fa-${item.icon} text-7xl `}
+                  style={{ color: item.color }}
+                ></i>
               </div>
 
-              <div className={presets.dataContainer + ` flex-1 `}>
-                {Number(item.Price).toLocaleString("pt-br", {
-                  style: "currency",
-                  currency: "BRL",
-                })}
-              </div>
+              <section
+                className={` flex flex-col items-center justify-evenly gap-2 w-full h-full py-1 font-bold text-2xl `}
+              >
+                <div
+                  className={
+                    presets.dataContainer + Global.colors.title + ` flex-2 `
+                  }
+                >
+                  {item.Name}
+                </div>
 
-              <div className={presets.dataContainer + ` flex-1`}>{item.Amount}</div>
-            </section>
-          </article>
-        );
-      })}
+                <div className={presets.dataContainer + ` flex-1 `}>
+                  {Number(item.Price).toLocaleString("pt-br", {
+                    style: "currency",
+                    currency: "BRL",
+                  })}
+                </div>
+
+                <div
+                  className={presets.dataContainer + ` flex-1`}
+                >{`${item.Amount.toLocaleString('pt-BR')} ${item.AmountType}`}</div>
+              </section>
+            </article>
+          );
+        })}
     </section>
   );
 }

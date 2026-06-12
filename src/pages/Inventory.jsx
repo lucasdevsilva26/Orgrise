@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { use, useState } from "react";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
 import Header from "../components/header/Header";
@@ -14,7 +14,7 @@ function Inventory() {
     toolButton: ` flex items-center gap-2 font-bold cursor-pointer `,
     scaleChange: ` duration-350 hover:scale-95 cursor-pointer`,
     input: ` ${Global.colors.frontground1} p-2 text-3xl rounded-xl `,
-    label: ` ${Global.colors.title} text-2xl font-bold `,
+    label: ` ${Global.colors.title} text-2xl font-bold cursor-pointer `,
     bgButton: `cursor-pointer w-max px-4 h-max py-1.5 bg-linear-to-r ${Global.colors.buttonBg} rounded-4xl text-white`,
   };
 
@@ -39,11 +39,14 @@ function Inventory() {
   const [iconsMenu, setIconsMenu] = useState(false);
 
   const [icon, setIcon] = useState("image ");
+  const [color, setColor] = useState("#000");
+  const [lastColorUpdate, setLastColorUpdate] = useState(0)
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
+  const [amountType, setAmountType] = useState('Q.')
 
-  const [searchText, setSearchText] = useState('')
+  const [searchText, setSearchText] = useState("");
 
   const iconsList = [
     { icon: "bowl-food", category: "food" },
@@ -206,9 +209,11 @@ function Inventory() {
       {
         id: crypto.randomUUID(),
         icon: icon,
+        color: color,
         Name: name,
         Price: Number(price),
         Amount: Number(amount),
+        AmountType: amountType
       },
     ];
 
@@ -284,7 +289,10 @@ function Inventory() {
                     setIconsMenu(!iconsMenu);
                   }}
                 >
-                  <i className={` fas fa-${icon} text-8xl `}></i>
+                  <i
+                    className={` fas fa-${icon} text-9xl `}
+                    style={{ color: color }}
+                  ></i>
                 </div>
                 <span
                   className={` font-bold text-2xl ` + presets.scaleChange}
@@ -294,13 +302,40 @@ function Inventory() {
                 >
                   Selecione a Imagem
                 </span>
+
+                <div
+                  className={` flex flex-col place-items-center font-bold w-full `}
+                >
+                  <hr className={` w-full h-1 my-2 `}></hr>
+
+                  <div className={` flex place-items-center gap-2 `}>
+                    <label htmlFor="color" className="cursor-pointer">
+                      Selecione a Cor
+                    </label>
+
+                    <input
+                      id="color"
+                      type="color"
+                      className="w-8 h-8 cursor-pointer"
+                      onChange={(e) => {
+                        const now = Date.now()
+
+                        if (now - lastColorUpdate > 100) {
+                          setLastColorUpdate(now)
+                          setColor(e.target.value)
+                        }
+                      }}
+                    />
+                  </div>
+                </div>
               </div>
 
               <div className={` flex flex-col `}>
-                <label htmlFor="" className={presets.label}>
+                <label htmlFor="name" className={presets.label}>
                   Nome
                 </label>
                 <input
+                  id="name"
                   type="text"
                   className={presets.input}
                   onChange={(input) => setName(input.target.value)}
@@ -308,10 +343,11 @@ function Inventory() {
               </div>
 
               <div className={` flex flex-col `}>
-                <label htmlFor="" className={presets.label}>
+                <label htmlFor="price" className={presets.label}>
                   Preço
                 </label>
                 <input
+                  id="price"
                   type="number"
                   className={presets.input}
                   onChange={(input) => setPrice(input.target.value)}
@@ -319,14 +355,36 @@ function Inventory() {
               </div>
 
               <div className={` flex flex-col `}>
-                <label htmlFor="" className={presets.label}>
+                <label htmlFor="amount" className={presets.label}>
                   Quantidade
                 </label>
                 <input
+                  id="amount"
                   type="number"
                   className={presets.input}
                   onChange={(input) => setAmount(input.target.value)}
                 />
+
+                <div
+                  className={` flex flex-col place-items-center gap-1 mt-2 `}
+                >
+                  <label
+                    htmlFor="select"
+                    className={` font-bold ` + Global.colors.title}
+                  >
+                    Unidade de medida:
+                  </label>
+
+                  <select
+                    id="select"
+                    className={Global.colors.frontground1 + ` font-bold `}
+                    onChange={(e) => {setAmountType(e.target.value)}}
+                  >
+                    <option value="Q.">(Un.) Unidade</option>
+                    <option value="Kg">(Kg) Quilograma</option>
+                    <option value="L">(L) Litro</option>
+                  </select>
+                </div>
               </div>
 
               <button
