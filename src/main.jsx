@@ -7,7 +7,6 @@ import Content from "./pages/Content";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Settings from "./pages/Settings";
-import Charts from "./pages/Charts";
 import Inventory from "./pages/Inventory";
 import Signon from "./pages/Signon";
 import Customers from "./pages/Customers";
@@ -72,10 +71,6 @@ const router = createBrowserRouter([
   {
     path: "/landing",
     element: <Landing></Landing>,
-  },
-  {
-    path: "/charts",
-    element: <Charts></Charts>,
   },
   {
     path: "/inventory",

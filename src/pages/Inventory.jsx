@@ -43,6 +43,8 @@ function Inventory() {
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
 
+  const [searchText, setSearchText] = useState('')
+
   const iconsList = [
     { icon: "bowl-food", category: "food" },
     { icon: "bacon", category: "food" },
@@ -233,13 +235,15 @@ function Inventory() {
             setMode={setMode}
             setIconsMenu={setIconsMenu}
           ></ToolBar>
-          <FindBar presets={presets}></FindBar>
+
+          <FindBar presets={presets} setSearchText={setSearchText}></FindBar>
 
           <ItemsList
             items={items}
             mode={mode}
             colorMode={colorMode}
             setItems={setItems}
+            searchText={searchText}
           ></ItemsList>
 
           <IconsList

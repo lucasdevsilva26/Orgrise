@@ -1,6 +1,6 @@
 import { Global } from "../../main";
 
-function FindBar({ presets }) {
+function FindBar({ presets, setSearchText }) {
   return (
     <section
       className={
@@ -34,6 +34,7 @@ function FindBar({ presets }) {
           type="text"
           placeholder="Pesquisar"
           className={` flex text-left w-full outline-none `}
+          onChange={(e) => setSearchText(e.target.value)}
         />
 
         <button className={presets.toolButton}>

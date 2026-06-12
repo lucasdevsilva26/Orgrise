@@ -8,14 +8,11 @@ function LoggedSideBar({ presets }) {
   const [sideMenus, setSideMenus] = useState(false);
   const menus = [
     { path: "Landing", name: "Tutorial", icon: "fas fa-brain" },
-    { path: "Charts", name: "Gráficos", icon: "fas fa-chart-column" },
     { path: "Inventory", name: "Estoque", icon: "fas fa-boxes-stacked" },
     { path: "Orders", name: "Pedidos", icon: "fas fa-truck-fast" },
     { path: "Customers", name: "Clientes", icon: "fas fa-people-group" },
-    { path: "Invoices", name: "Faturas", icon: "fas fa-file-contract" },
     { path: "Finance", name: "Financeiro", icon: "fab fa-cash-app" },
     { path: "Employees", name: "Funcionários", icon: "fas fa-user-tie" },
-    { path: "Schedule", name: "Agenda", icon: "far fa-calendar-days" },
     { path: "Reports", name: "Relatórios", icon: "fas fa-file-lines" },
     { path: "Suppliers", name: "Fornecedores", icon: "fas fa-handshake" },
     { path: "Alerts", name: "Alertas", icon: "fas fa-triangle-exclamation" },

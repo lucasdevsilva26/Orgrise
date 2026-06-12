@@ -13,12 +13,6 @@ function Landing() {
         "Acesse guias rápidos e instruções para aprender a utilizar todas as funcionalidades do sistema.",
     },
     {
-      icon: "fas fa-chart-column",
-      title: "Gráficos",
-      Description:
-        "Visualize informações importantes do seu negócio através de gráficos e indicadores de desempenho.",
-    },
-    {
       icon: "fas fa-boxes-stacked",
       title: "Estoque",
       Description:
@@ -37,11 +31,6 @@ function Landing() {
         "Cadastre e consulte informações dos seus clientes para facilitar o atendimento.",
     },
     {
-      icon: "fas fa-file-contract",
-      title: "Faturas",
-      Description: "Crie, visualize e acompanhe faturas e cobranças emitidas.",
-    },
-    {
       icon: "fab fa-cash-app",
       title: "Financeiro",
       Description:
@@ -53,11 +42,6 @@ function Landing() {
 
       Description:
         "Gerencie informações da equipe, cargos e dados dos colaboradores.",
-    },
-    {
-      icon: "far fa-calendar-days",
-      title: "Agenda",
-      Description: "Organize compromissos, reuniões e tarefas importantes.",
     },
     {
       icon: "fas fa-file-lines",
@@ -113,7 +97,9 @@ function Landing() {
             </div>
           </div>
 
-          <section className={`flex flex-wrap gap-10 justify-center w-full px-10`}>
+          <section
+            className={`flex flex-wrap gap-10 justify-center w-full px-10`}
+          >
             {cards.map((card) => {
               return (
                 <div
