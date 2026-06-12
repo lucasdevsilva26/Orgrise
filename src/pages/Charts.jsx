@@ -18,6 +18,17 @@ function Charts() {
     Price: inventory.slice(0, 10).map((item) => item.Price),
     Amount: inventory.slice(0, 10).map((item) => item.Amount),
   };
+  const inventorySize = Math.ceil(inventory.length / 10);
+  inventoryDatas.PricePercentage = inventoryDatas.Price.reduce(
+    (acc, item) => acc + item,
+    0,
+  );
+  inventoryDatas.AmountPercentage = inventoryDatas.Amount.reduce(
+    (acc, item) => acc + item,
+    0,
+  );
+
+  console.log(inventoryDatas);
 
   const [valueToShow, setValueToShow] = useState("Price");
   const presets = {
@@ -46,29 +57,14 @@ function Charts() {
       <Body colors={Global.colors}>
         <section className={` flex flex-col items-center w-full `}>
           <section className={`flex flex-col items-center w-full p-10`}>
-            <div className={` flex gap-5 `}>
-              <button
-                className={presets.button}
-                onClick={() => setValueToShow("Amount")}
-              >
-                Quantidade
-              </button>
-              <button
-                className={presets.button}
-                onClick={() => setValueToShow("Price")}
-              >
-                Preço
-              </button>
-            </div>
-
             <div
               className={` flex flex-col place-items-center gap-10 w-max h-max my-5 `}
             >
               <div className={` w-max h-max relative `}>
                 <MyPieChart
-                  data={inventory.slice(0, 10)}
-                  size={[750, 750]}
-                  valueToShow={valueToShow}
+                  data={inventoryDatas[valueToShow].slice(10 * page - 10, 10 * page)}
+                  size={[500, 500]}
+                  valuePercentages={inventoryDatas[valueToShow+"Percentage"]}
                   colors={colors}
                 ></MyPieChart>
 
@@ -90,29 +86,45 @@ function Charts() {
                   <h2>Items Cadastrados:</h2>
                   <h3>{inventory.length}</h3>
 
-                  <h4>{`${page} / ${Math.round(inventory.length / 10)} páginas`}</h4>
+                  <h4>{`${page} / ${inventorySize} páginas`}</h4>
                 </div>
               </div>
 
-              <div className={`flex gap-4`}>
-                <button
-                  className={presets.button}
-                  onClick={() => {
-                    setPage((page - 1) % Math.round(inventory.length / 10));
-                  }}
-                >
-                  Voltar
-                </button>
+              <section className={` flex flex-col gap-4 `}>
+                <div className={`flex gap-4`}>
+                  <button
+                    className={presets.button}
+                    onClick={() => {
+                      setPage(page - 1 < 1 ? inventorySize : page - 1);
+                    }}
+                  >
+                    Voltar
+                  </button>
+                  <button
+                    className={presets.button}
+                    onClick={() => {
+                      setPage(page + 1 > inventorySize ? 1 : page + 1);
+                    }}
+                  >
+                    Avançar
+                  </button>
+                </div>
 
-                <button
-                  className={presets.button}
-                  onClick={() => {
-                    setPage((page + 1) % Math.round(inventory.length / 10));
-                  }}
-                >
-                  Avançar
-                </button>
-              </div>
+                <div className={` flex gap-5 `}>
+                  <button
+                    className={presets.button}
+                    onClick={() => setValueToShow("Amount")}
+                  >
+                    Quantidade
+                  </button>
+                  <button
+                    className={presets.button}
+                    onClick={() => setValueToShow("Price")}
+                  >
+                    Preço
+                  </button>
+                </div>
+              </section>
             </div>
           </section>
 
