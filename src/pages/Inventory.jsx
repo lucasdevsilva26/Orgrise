@@ -370,7 +370,7 @@ function Inventory() {
                 >
                   <label
                     htmlFor="select"
-                    className={` font-bold ` + Global.colors.title}
+                    className={` font-bold cursor-pointer` + Global.colors.title}
                   >
                     Unidade de medida:
                   </label>

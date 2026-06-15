@@ -1,6 +1,9 @@
+import { useState } from "react";
 import { Global } from "../../main";
 
 function FindBar({ presets, setSearchText }) {
+  const [filterType, setFilterType] = useState('name')
+
   return (
     <section
       className={
@@ -9,19 +12,21 @@ function FindBar({ presets, setSearchText }) {
       }
     >
       <button className={presets.toolButton + ` justify-self-start `}>
-        <i className={` fas fa-filter `}></i>Filtrar
-        <select className={Global.colors.background + ` w-4 `}>
-          <option value=""></option>
+        <i className={` fas fa-filter `}></i>
 
-          <option value="a" className={Global.colors.text + ` text-black `}>
-            Alfabética
+        <label htmlFor="filter" className={Global.colors.title + `cursor-pointer`}>
+          Filtrar por:
+        </label>
+        <select id="filter" className={Global.colors.frontground0 + `  `}>
+          <option value="name" className={Global.colors.text}>
+            Nome
           </option>
 
-          <option value="a" className={Global.colors.text + ` text-black `}>
-            Quantidade
+          <option value="unit" className={Global.colors.text + ` text-black `}>
+            Unidade
           </option>
 
-          <option value="a" className={Global.colors.text + ` text-black `}>
+          <option value="price" className={Global.colors.text + ` text-black `}>
             Preço
           </option>
         </select>
@@ -41,10 +46,6 @@ function FindBar({ presets, setSearchText }) {
           <i className={` fas fa-magnifying-glass `}></i>
         </button>
       </div>
-
-      <button className={presets.toolButton + `  `}>
-        <i className="fas fa-list"></i>Crescente
-      </button>
     </section>
   );
 }

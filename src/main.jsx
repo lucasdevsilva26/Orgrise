@@ -10,6 +10,7 @@ import Settings from "./pages/Settings";
 import Inventory from "./pages/Inventory";
 import Signon from "./pages/Signon";
 import Customers from "./pages/Customers";
+import Alerts from "./pages/Alerts";
 
 const themeDuration = " duration-1000! ";
 
@@ -79,6 +80,10 @@ const router = createBrowserRouter([
   {
     path: "/customers",
     element: <Customers></Customers>,
+  },
+  {
+    path: "/alerts",
+    element: <Alerts></Alerts>
   },
   {
     path: "/settings",
