@@ -2,6 +2,7 @@ import { Global } from "../main";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
 import Header from "../components/header/Header";
+import { useState } from "react";
 
 function Alerts() {
   const presets = {
@@ -13,15 +14,13 @@ function Alerts() {
     dataValues: ` p-1 rounded-xl ` + Global.colors.frontground1,
   };
 
-  const alerts = [
-    {
-      area: "Financeiro",
-      Effect: "Edição",
-      Date: "00/00/00",
-      Hour: "00:00",
-      Description: "Valor da maçã alterado para R$ 0,00.",
-    },
-  ];
+  const [userData, setUserData] = useState(
+    JSON.parse(localStorage.getItem("userData")) || [],
+  );
+
+  const alerts = userData.find(
+      (data) => data.email === localStorage.getItem("logged"),
+    ).alerts
 
   return (
     <>
@@ -41,7 +40,7 @@ function Alerts() {
               return (
                 <article
                   className={
-                    ` flex flex-col gap-2 p-4 rounded-2xl border-2 border-amber-500 ` +
+                    ` flex flex-col gap-2 w-100 p-4 rounded-2xl border-2 border-amber-500 ` +
                     Global.colors.frontground0
                   }
                 >
@@ -50,23 +49,23 @@ function Alerts() {
                     <span className={presets.dataValues}>{alert.area}</span>
 
                     <span className={presets.dataTitle}>Efeito:</span>
-                    <span className={presets.dataValues}>{alert.Effect}</span>
+                    <span className={presets.dataValues}>{alert.effect}</span>
                   </div>
 
                   <div className={presets.dataContainer}>
                     <span className={presets.dataTitle}>Data:</span>
-                    <span className={presets.dataValues}>{alert.Date}</span>
+                    <span className={presets.dataValues}>{alert.date}</span>
 
                     <span className={presets.dataTitle}>Hora:</span>
-                    <span className={presets.dataValues}>{alert.Hour}</span>
+                    <span className={presets.dataValues}>{alert.hour}</span>
                   </div>
 
                   <div
                     className={` flex-col items-start ` + presets.dataContainer}
                   >
                     <span className={presets.dataTitle}>Descrição:</span>
-                    <span className={presets.dataValues}>
-                      {alert.Description}
+                    <span className={presets.dataValues + ` w-28/30 `}>
+                      {alert.description}
                     </span>
                   </div>
                 </article>

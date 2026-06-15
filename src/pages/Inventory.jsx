@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import { useState } from "react";
 import Body from "../components/Body";
 import Footer from "../components/Footer";
 import Header from "../components/header/Header";
@@ -40,11 +40,11 @@ function Inventory() {
 
   const [icon, setIcon] = useState("image ");
   const [color, setColor] = useState("#000");
-  const [lastColorUpdate, setLastColorUpdate] = useState(0)
+  const [lastColorUpdate, setLastColorUpdate] = useState(0);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [amountType, setAmountType] = useState('Q.')
+  const [amountType, setAmountType] = useState("Q.");
 
   const [searchText, setSearchText] = useState("");
 
@@ -213,17 +213,36 @@ function Inventory() {
         Name: name,
         Price: Number(price),
         Amount: Number(amount),
-        AmountType: amountType
+        AmountType: amountType,
       },
     ];
 
     setItems(newItems);
 
-    const newUserData = structuredClone(userData);
-
+    let newUserData = structuredClone(userData);
     newUserData.find(
       (data) => data.email === localStorage.getItem("logged"),
     ).storage = newItems;
+
+    let alerts = newUserData.find(
+      (data) => data.email === localStorage.getItem("logged"),
+    ).alerts;
+
+    newUserData.find(
+      (data) => data.email === localStorage.getItem("logged"),
+    ).alerts = [
+      ...alerts,
+      {
+        area: 'Estoque',
+        effect:'Adição',
+        date: new Date().toLocaleDateString("pt-BR"),
+        hour: new Date().toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        description: `Novo item [${name}] adicionado ao estoque`,
+      },
+    ];
 
     setUserData(newUserData);
     localStorage.setItem("userData", JSON.stringify(newUserData));
@@ -318,11 +337,11 @@ function Inventory() {
                       type="color"
                       className="w-8 h-8 cursor-pointer"
                       onChange={(e) => {
-                        const now = Date.now()
+                        const now = Date.now();
 
                         if (now - lastColorUpdate > 100) {
-                          setLastColorUpdate(now)
-                          setColor(e.target.value)
+                          setLastColorUpdate(now);
+                          setColor(e.target.value);
                         }
                       }}
                     />
@@ -370,7 +389,9 @@ function Inventory() {
                 >
                   <label
                     htmlFor="select"
-                    className={` font-bold cursor-pointer` + Global.colors.title}
+                    className={
+                      ` font-bold cursor-pointer` + Global.colors.title
+                    }
                   >
                     Unidade de medida:
                   </label>
@@ -378,7 +399,9 @@ function Inventory() {
                   <select
                     id="select"
                     className={Global.colors.frontground1 + ` font-bold `}
-                    onChange={(e) => {setAmountType(e.target.value)}}
+                    onChange={(e) => {
+                      setAmountType(e.target.value);
+                    }}
                   >
                     <option value="Q.">(Un.) Unidade</option>
                     <option value="Kg">(Kg) Quilograma</option>

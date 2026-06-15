@@ -16,7 +16,27 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
     );
     setItems(newItems);
 
-    const newUserData = structuredClone(userData);
+    let newUserData = structuredClone(userData);
+
+    let alerts = newUserData.find(
+      (data) => data.email === localStorage.getItem("logged"),
+    ).alerts;
+
+    newUserData.find(
+      (data) => data.email === localStorage.getItem("logged"),
+    ).alerts = [
+      ...alerts,
+      {
+        area: "Estoque",
+        effect: "Adição",
+        date: new Date().toLocaleDateString("pt-BR"),
+        hour: new Date().toLocaleTimeString("pt-BR", {
+          hour: "2-digit",
+          minute: "2-digit",
+        }),
+        description: `Item [${item.Name}] removido do estoque`,
+      },
+    ];
 
     newUserData.find(
       (data) => data.email === localStorage.getItem("logged"),
@@ -72,7 +92,7 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
 
                 <div
                   className={presets.dataContainer + ` flex-1`}
-                >{`${item.Amount.toLocaleString('pt-BR')} ${item.AmountType}`}</div>
+                >{`${item.Amount.toLocaleString("pt-BR")} ${item.AmountType}`}</div>
               </section>
             </article>
           );
