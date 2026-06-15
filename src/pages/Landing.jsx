@@ -19,12 +19,6 @@ function Landing() {
         "Cadastre, edite e acompanhe todos os produtos disponíveis em seu estoque.",
     },
     {
-      icon: "fas fa-truck-fast",
-      title: "Pedidos",
-      Description:
-        "Gerencie os pedidos realizados pelos clientes, acompanhe status e histórico de vendas.",
-    },
-    {
       icon: "fas fa-people-group",
       title: "Clientes",
       Description:
@@ -35,25 +29,6 @@ function Landing() {
       title: "Financeiro",
       Description:
         "Monitore receitas, despesas e tenha uma visão geral da saúde financeira da empresa.",
-    },
-    {
-      icon: "fas fa-user-tie",
-      title: "Funcionários",
-
-      Description:
-        "Gerencie informações da equipe, cargos e dados dos colaboradores.",
-    },
-    {
-      icon: "fas fa-file-lines",
-      title: "Relatórios",
-      Description:
-        "Gere relatórios detalhados para análise e tomada de decisões.",
-    },
-    {
-      icon: "fas fa-handshake",
-      title: "Fornecedores",
-      Description:
-        "Cadastre e acompanhe os fornecedores responsáveis pelo abastecimento da empresa.",
     },
     {
       icon: "fas fa-triangle-exclamation",

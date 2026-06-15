@@ -144,7 +144,7 @@ function Customers() {
 
                     <div className={presets.cellContainer}>
                       <span className={presets.cellTitle}>Telefone:</span>
-                      <span>{people.phoneNumber}</span>
+                      <span>{people.tel}</span>
                     </div>
 
                     <div className={presets.cellContainer}>

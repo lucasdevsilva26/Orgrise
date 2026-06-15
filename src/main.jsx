@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router";
 import Home from "./pages/Home";
-import Content from "./pages/Content";
 import Login from "./pages/Login";
 import Landing from "./pages/Landing";
 import Settings from "./pages/Settings";
@@ -56,10 +55,6 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
-  },
-  {
-    path: "/content",
-    element: <Content></Content>,
   },
   {
     path: "/login",

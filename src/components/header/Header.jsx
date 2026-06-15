@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router";
 import StartButton from "./StartButton";
-import ContentButton from "./ContentButton";
 import LoginButton from "./LoginButton";
 import SignonButton from "./SignonButton";
 
@@ -39,10 +38,6 @@ function Header() {
         className={`flex flex-col items-center gap-5 w-50 h-full px-2 pt-5 fixed top-0 left-full ${sideBar ? "-translate-x-full" : "translate-x-0"} border-l-2 border-l-teal-500 ${Global.colors.frontground0} z-50 duration-500`}
       >
         <StartButton presets={presets} extraClasses={" w-full! "}></StartButton>
-        <ContentButton
-          presets={presets}
-          extraClasses={" w-full! "}
-        ></ContentButton>
         <LoginButton presets={presets} extraClasses={" w-full! "}></LoginButton>
         <SignonButton
           presets={presets}
@@ -101,7 +96,6 @@ function Header() {
 
       <nav className={`hidden items-center h-full text sm:flex`}>
         <StartButton presets={presets}></StartButton>
-        <ContentButton presets={presets}></ContentButton>
       </nav>
 
       <nav className={`flex gap-5 items-center`}>

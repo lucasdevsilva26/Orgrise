@@ -16,7 +16,7 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
     tel: "",
     email: "",
     city: "",
-    status: false,
+    status: true,
     lastBuy: 0,
     totalBuy: 0,
   });
