@@ -28,7 +28,7 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
   return (
     <form
       className={
-        ` flex-col items-center gap-4 w-100 h-max p-8 border rounded-xl fixed top-1/2 left-1/2 -translate-1/2 ${addPage ? "flex" : "hidden"} ` +
+        ` flex-col items-center gap-4 max-w-100 w-full h-max p-8 border rounded-xl fixed top-1/2 left-1/2 -translate-1/2 ${addPage ? "flex" : "hidden"} ` +
         Global.colors.frontground0 +
         Global.colors.border
       }
@@ -73,6 +73,17 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
 
         setUserData(newUserData);
         localStorage.setItem("userData", JSON.stringify(newUserData));
+
+        setAddPage(false);
+        setData({
+          name: "",
+          tel: "",
+          email: "",
+          city: "",
+          status: true,
+          lastBuy: 0,
+          totalBuy: 0,
+        });
       }}
     >
       <h1 className={` font-bold text-2xl ` + Global.colors.title}>
@@ -89,6 +100,7 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
             id="name"
             className={presets.inputContainer}
             required
+            value={data.name}
             onChange={(e) => {
               setData({ ...data, name: e.target.value });
             }}
@@ -103,8 +115,8 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
             type="tel"
             id="tel"
             className={presets.inputContainer}
-            value={data.tel}
             required
+            value={data.tel}
             onChange={(e) => {
               let tel = e.target.value.replace(/\D/g, "");
 
@@ -127,6 +139,7 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
             id="email"
             className={presets.inputContainer}
             required
+            value={data.email}
             onChange={(e) => {
               setData({ ...data, email: e.target.value });
             }}
@@ -142,6 +155,7 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
             id="city"
             className={presets.inputContainer}
             required
+            value={data.city}
             onChange={(e) => {
               setData({ ...data, city: e.target.value });
             }}
