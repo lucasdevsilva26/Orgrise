@@ -14,13 +14,11 @@ function Alerts() {
     dataValues: ` p-1 rounded-xl ` + Global.colors.frontground1,
   };
 
-  const [userData, setUserData] = useState(
-    JSON.parse(localStorage.getItem("userData")) || [],
-  );
+  const userData = JSON.parse(localStorage.getItem("userData")) || [];
 
   const alerts = userData.find(
-      (data) => data.email === localStorage.getItem("logged"),
-    ).alerts
+    (data) => data.email === localStorage.getItem("logged"),
+  ).alerts;
 
   return (
     <>
@@ -36,9 +34,10 @@ function Alerts() {
           <hr className={` w-full h-4 my-4` + Global.colors.border} />
 
           <section className={` flex flex-wrap justify-center gap-10 w-full `}>
-            {alerts.map((alert) => {
+            {[...alerts].reverse().map((alert) => {
               return (
                 <article
+                  key={crypto.randomUUID()}
                   className={
                     ` flex flex-col gap-2 w-100 p-4 rounded-2xl border-2 border-amber-500 ` +
                     Global.colors.frontground0

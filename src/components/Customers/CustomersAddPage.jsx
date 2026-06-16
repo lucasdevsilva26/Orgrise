@@ -52,6 +52,25 @@ function CustomersAddPage({ addPage, setAddPage, customers, setCustomers }) {
           (data) => data.email === localStorage.getItem("logged"),
         ).customers = newCustomers;
 
+        let alerts = newUserData.find(
+          (data) => data.email === localStorage.getItem("logged"),
+        ).alerts;
+        newUserData.find(
+          (data) => data.email === localStorage.getItem("logged"),
+        ).alerts = [
+          ...alerts,
+          {
+            area: "Clientes",
+            effect: "Adição",
+            date: new Date().toLocaleDateString("pt-BR"),
+            hour: new Date().toLocaleTimeString("pt-BR", {
+              hour: "2-digit",
+              minute: "2-digit",
+            }),
+            description: `Cliente [${data.name}] adicionado na ficha de cadastro.`,
+          },
+        ];
+
         setUserData(newUserData);
         localStorage.setItem("userData", JSON.stringify(newUserData));
       }}

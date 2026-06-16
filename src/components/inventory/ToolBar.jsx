@@ -22,17 +22,6 @@ function ToolBar({ presets, mode, setMode, setIconsMenu }) {
       <button
         className={presets.toolButton}
         onClick={() => {
-          setMode(mode === "edit" ? "" : "edit");
-          setIconsMenu(false)
-        }}
-      >
-        {" "}
-        <i className={` fas fa-pen-to-square `}></i>Editar Produto
-      </button>
-
-      <button
-        className={presets.toolButton}
-        onClick={() => {
           setMode(mode === "remove" ? "" : "remove");
           setIconsMenu(false)
         }}

@@ -28,7 +28,7 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
       ...alerts,
       {
         area: "Estoque",
-        effect: "Adição",
+        effect: "Remoção",
         date: new Date().toLocaleDateString("pt-BR"),
         hour: new Date().toLocaleTimeString("pt-BR", {
           hour: "2-digit",

@@ -120,7 +120,6 @@ function Customers() {
                         const newCustomers = customers.filter(
                           (peopleToVerify) => peopleToVerify !== people,
                         );
-
                         setCustomers(newCustomers);
 
                         const newUserData = structuredClone(userData);
@@ -128,6 +127,27 @@ function Customers() {
                           (data) =>
                             data.email === localStorage.getItem("logged"),
                         ).customers = newCustomers;
+
+                        let alerts = newUserData.find(
+                          (data) =>
+                            data.email === localStorage.getItem("logged"),
+                        ).alerts;
+                        newUserData.find(
+                          (data) =>
+                            data.email === localStorage.getItem("logged"),
+                        ).alerts = [
+                          ...alerts,
+                          {
+                            area: "Clientes",
+                            effect: "Remoção",
+                            date: new Date().toLocaleDateString("pt-BR"),
+                            hour: new Date().toLocaleTimeString("pt-BR", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            }),
+                            description: `Cliente [${people.name}] removido da ficha de cadastro.`,
+                          },
+                        ];
 
                         setUserData(newUserData);
                         localStorage.setItem(

@@ -44,7 +44,7 @@ function Inventory() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [amountType, setAmountType] = useState("Q.");
+  const [amountType, setAmountType] = useState("U.");
 
   const [searchText, setSearchText] = useState("");
 
@@ -403,7 +403,7 @@ function Inventory() {
                       setAmountType(e.target.value);
                     }}
                   >
-                    <option value="Q.">(Un.) Unidade</option>
+                    <option value="Un.">(Un.) Unidade</option>
                     <option value="Kg">(Kg) Quilograma</option>
                     <option value="L">(L) Litro</option>
                   </select>
