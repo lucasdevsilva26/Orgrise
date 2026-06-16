@@ -13,8 +13,8 @@ function Inventory() {
   const presets = {
     toolButton: ` flex items-center gap-2 font-bold cursor-pointer `,
     scaleChange: ` duration-350 hover:scale-95 cursor-pointer`,
-    input: ` ${Global.colors.frontground1} p-2 text-3xl rounded-xl `,
-    label: ` ${Global.colors.title} text-2xl font-bold cursor-pointer `,
+    input: ` ${Global.colors.frontground1} p-2 text-3xl rounded-xl w-full `,
+    label: ` ${Global.colors.title} text-2xl font-bold cursor-pointer w-full `,
     bgButton: `cursor-pointer w-max px-4 h-max py-1.5 bg-linear-to-r ${Global.colors.buttonBg} rounded-4xl text-white`,
   };
 
@@ -246,6 +246,10 @@ function Inventory() {
 
     setUserData(newUserData);
     localStorage.setItem("userData", JSON.stringify(newUserData));
+
+    setName('')
+    setPrice(0)
+    setAmount(0)
   }
 
   return (
@@ -280,7 +284,7 @@ function Inventory() {
           ></IconsList>
 
           <section
-            className={` flex flex-col fixed w-100 top-1/2 left-1/2 -translate-1/2 rounded-xl p-6 ${Global.colors.frontground0} ${mode == "create" ? "flex" : "hidden"} border-3 ${Global.colors.border} ${iconsMenu ? "hidden" : ""} `}
+            className={` flex flex-col fixed max-w-100 w-full top-1/2 left-1/2 -translate-1/2 rounded-xl p-6 ${Global.colors.frontground0} ${mode == "create" ? "flex" : "hidden"} border-3 ${Global.colors.border} ${iconsMenu ? "hidden" : ""} `}
           >
             <button
               className={
@@ -357,6 +361,7 @@ function Inventory() {
                   id="name"
                   type="text"
                   className={presets.input}
+                  value={name}
                   onChange={(input) => setName(input.target.value)}
                 />
               </div>
@@ -369,6 +374,7 @@ function Inventory() {
                   id="price"
                   type="number"
                   className={presets.input}
+                  value={price}
                   onChange={(input) => setPrice(input.target.value)}
                 />
               </div>
@@ -381,6 +387,7 @@ function Inventory() {
                   id="amount"
                   type="number"
                   className={presets.input}
+                  value={amount}
                   onChange={(input) => setAmount(input.target.value)}
                 />
 
