@@ -1,7 +1,18 @@
 import { useState } from "react";
 import { Global } from "../../main";
+import { useLocation } from "react-router";
 
-function ItemsList({ items, mode, colorMode, setItems, searchText }) {
+function ItemsList({
+  items,
+  mode,
+  colorMode,
+  setItems,
+  searchText,
+  money,
+  setMoney,
+  editMode,
+  modyfier
+}) {
   const presets = {
     dataContainer: ` w-9/10 px-2 rounded-2xl ${Global.colors.frontground1} overflow-hidden line-clamp-2 break-words `,
   };
@@ -9,6 +20,8 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
   const [userData, setUserData] = useState(
     JSON.parse(localStorage.getItem("userData")) || [],
   );
+
+  const location = useLocation();
 
   function removeItem(items, item) {
     const newItems = items.filter(
@@ -48,6 +61,7 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
 
   return (
     <section className={` flex flex-wrap justify-evenly w-full h-max my-2 `}>
+      <h1>{items.length} Items Cadastrados</h1>
       {items
         .filter((item) =>
           item.Name.toLowerCase().includes(searchText.toLowerCase()),
@@ -60,6 +74,28 @@ function ItemsList({ items, mode, colorMode, setItems, searchText }) {
               onClick={() => {
                 if (mode === "remove") {
                   removeItem(items, item);
+                }
+
+                if (
+                  location.pathname === "/finance" &&
+                  editMode === "sell" &&
+                  item.Amount - Number(modyfier) >= 0
+                ) {
+                  const newItems = items.map((i) =>
+                    i.id === item.id ? { ...i, Amount: i.Amount - Number(modyfier) } : i,
+                  );
+                  setItems(newItems);
+                  setMoney(money + item.Price);
+                } else if (
+                  location.pathname === "/finance" &&
+                  editMode === "buy" &&
+                  money - item.Price * Number(modyfier) >= 0
+                ) {
+                  const newItems = items.map((i) =>
+                    i.id === item.id ? { ...i, Amount: i.Amount + Number(modyfier) } : i,
+                  );
+                  setItems(newItems);
+                  setMoney(money - item.Price * Number(modyfier));
                 }
               }}
             >

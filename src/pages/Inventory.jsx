@@ -44,7 +44,7 @@ function Inventory() {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [amountType, setAmountType] = useState("U.");
+  const [amountType, setAmountType] = useState("Un.");
 
   const [searchText, setSearchText] = useState("");
 
