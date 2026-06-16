@@ -60,8 +60,9 @@ function ItemsList({
   }
 
   return (
+    <>
+    <h1 className={`w-full text-center border-t-3 pt-2` + Global.colors.border}>{items.length} Items Cadastrados</h1>
     <section className={` flex flex-wrap justify-evenly w-full h-max my-2 `}>
-      <h1>{items.length} Items Cadastrados</h1>
       {items
         .filter((item) =>
           item.Name.toLowerCase().includes(searchText.toLowerCase()),
@@ -134,6 +135,7 @@ function ItemsList({
           );
         })}
     </section>
+    </>
   );
 }
 export default ItemsList;

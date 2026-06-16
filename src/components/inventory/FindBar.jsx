@@ -7,8 +7,7 @@ function FindBar({ presets, setSearchText }) {
   return (
     <section
       className={
-        Global.colors.border +
-        ` flex flex-wrap items-center justify-center gap-3 px-6 h-max py-5 border-b-2 `
+        ` flex flex-wrap items-center justify-center gap-3 px-6 h-max py-5`
       }
     >
       <div

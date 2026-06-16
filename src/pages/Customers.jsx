@@ -106,6 +106,7 @@ function Customers() {
               </button>
             </div>
 
+<h1 className={` text-center font-bold mb-4 ` + Global.colors.title}>{customers.length} Clientes cadastrados</h1>
             <div className={` flex flex-wrap justify-center gap-4 `}>
               {customers.map((people) => {
                 return (
